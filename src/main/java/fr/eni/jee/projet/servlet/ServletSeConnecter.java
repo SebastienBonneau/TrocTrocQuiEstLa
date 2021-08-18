@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.jee.projet.bll.ProjetManager;
 import fr.eni.jee.projet.bo.Utilisateur;
@@ -20,7 +21,7 @@ public class ServletSeConnecter extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private ProjetManager projetManager;
-	private Utilisateur userManager;
+	private Utilisateur user = null;
 	
 	public ServletSeConnecter() {
     	super();
@@ -28,7 +29,7 @@ public class ServletSeConnecter extends HttpServlet {
     }
 	
 	/**
-	 * Est appele lorsqu'on valide le formulaire de connexion
+	 * Est appele lorsqu'on valide le formulaire de connexion 
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -39,20 +40,24 @@ public class ServletSeConnecter extends HttpServlet {
 			String motDePasse = request.getParameter("motDePasse");
 			
 			// 2 - On appelle la couche BLL avec ces parametres
-			this.projetManager.selectUtilisateur(identifiant, motDePasse);
+			user = this.projetManager.selectUtilisateur(identifiant, motDePasse);
 			
-			// 3 - On ajoute un attribut pour dire que tout s'est bien passe
-			request.setAttribute("success", true);
-			
-			if(userManager.getPseudo().equals(identifiant) || userManager.getEmail().equals(identifiant) && userManager.getMot_de_passe().equals(motDePasse)) {
-				System.out.println("qsqsdsqdsqdsqdsqqsdq");
-			}
+			if(user != null) {
+				HttpSession session = request.getSession();
+				session.setAttribute("utilisateur", user);
+                request.getRequestDispatcher("./accueil.jsp").forward(request, response);
+			}else {
+				request.setAttribute("erreur", "une erreur s'est produite durant la création");
+                request.getRequestDispatcher("./seConnecter.jsp").forward(request, response);
+
+           }
 			
 		}
 		catch( DALException e) {
 			// Si jamais on a une exception personalisee on ajoute un attribut "erreur" pour que la JSP puisse l'afficher
 			// on fait ca parce que l'on veut uniquement afficher nos erreurs "m�tier"
 			request.setAttribute("erreur", e.getMessage());
+			e.printStackTrace(); //je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
 		}
 		// ce catch est effectue si jamais l'exception levee n'est pas de type BusinessException
 		catch( Exception e) {
@@ -60,21 +65,6 @@ public class ServletSeConnecter extends HttpServlet {
 			request.setAttribute("erreur", "une erreur s'est produite durant la creation");
 			e.printStackTrace(); //je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
 		}
-
-		
-		// 2 - On va ajouter un utilisateur a la session a partir de l'identifiant et du mot de passe
-		request.getSession().setAttribute("Utilisateurs", userManager.getPseudo());
-//		
-//		// 3 - On va cr�er un cookie pour stocker l'identifiant 
-//		Cookie ckId = new Cookie("identifiant", identifiant);
-//		//Cookie ckMdp = new Cookie("motDePasse", motDePasse);
-//		
-//		response.addCookie(ckId);
-//		// response.addCookie(ckMdp);
-//		
-		//response.sendRedirect("./seConnecter.jsp");
-		
-		request.getRequestDispatcher("./connecter.jsp").forward(request, response);
 	}
 
 }

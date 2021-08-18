@@ -11,13 +11,9 @@
 
 	<h1> ENI-Enchères</h1>						
 	
-	<c:if test="${!empty success}">
-	<span class="success">La création a été effectuée avec succès</span>
-	</c:if>
-	
 	<c:if test="${!empty erreur}">
-		<span class="error"> ${erreur}</span>
-	</c:if>
+		<span> ${erreur}</span>
+	</c:if> <br /><br />
 	
 	<form method="post" action="./ServletSeConnecter">
 	

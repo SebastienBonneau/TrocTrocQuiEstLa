@@ -47,6 +47,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 			}
 			
 		}catch (Exception e) {
+			e.printStackTrace(); //je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
 			throw new DALException("une erreur est survenu");
 		}
 		return user;

@@ -15,9 +15,9 @@ public class ProjetManager {
 
 	public Utilisateur selectUtilisateur(String identifiant, String motDePasse) throws DALException {
 		
-		Utilisateur userManager = this.utilisateursDAO.selectUtilisateur(identifiant, motDePasse);
+		Utilisateur result = this.utilisateursDAO.selectUtilisateur(identifiant, motDePasse);
 		
-		return userManager;
+		return result;
 	}
 	
 }
