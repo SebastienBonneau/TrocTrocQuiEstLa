@@ -1,6 +1,6 @@
 package fr.eni.jee.projet.dal;
 
-import fr.eni.jee.projet.dal.Impl.UtilisateursDAOJdbcImpl;
+import fr.eni.jee.projet.dal.impl.UtilisateursDAOJdbcImpl;
 
 public class DAOFactory {
 	

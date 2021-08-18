@@ -25,42 +25,42 @@ public class ServletSeConnecter extends HttpServlet {
 		this.projetManager = new ProjetManager();
     }
 	/**
-	 * Est appelé lorsqu'on valide le formulaire de connexion
+	 * Est appele lorsqu'on valide le formulaire de connexion
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
 		try {
-			// 1 - On récupère les informations envoyées par le formulaire
+			// 1 - On recupere les informations envoyees par le formulaire
 			String identifiant = request.getParameter("identifiant");
 			String motDePasse = request.getParameter("motDePasse");
 			
-			// 2 - On appelle la couche BLL avec ces paramètres
+			// 2 - On appelle la couche BLL avec ces parametres
 			this.projetManager.utilisateurMDP(identifiant, motDePasse);
 			
-			// 3 - On ajoute un attribut pour dire que tout s'est bien passé
+			// 3 - On ajoute un attribut pour dire que tout s'est bien passï¿½
 			request.setAttribute("success", true);
 		}
 		catch( DALException e) {
-			// Si jamais on a une exception personalisée on ajoute un attribut "erreur" pour que la JSP puisse l'afficher
-			// on fait ca parce que l'on veut uniquement afficher nos erreurs "métier"
+			// Si jamais on a une exception personalisee on ajoute un attribut "erreur" pour que la JSP puisse l'afficher
+			// on fait ca parce que l'on veut uniquement afficher nos erreurs "mï¿½tier"
 			request.setAttribute("erreur", e.getMessage());
 		}
-		// ce catch là est effectué si jamais l'exception levée n'est pas de type BusinessException
+		// ce catch est effectue si jamais l'exception levee n'est pas de type BusinessException
 		catch( Exception e) {
 			// Si jamais on a une exception d'un autre type, on precise dans notre attribut un message generique d'erreur
-			request.setAttribute("erreur", "une erreur s'est produite durant la création");
-			e.printStackTrace(); //je fais cela pour afficher dans la console l'erreur malgré le fait que l'erreur est catchée
+			request.setAttribute("erreur", "une erreur s'est produite durant la crï¿½ation");
+			e.printStackTrace(); //je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
 		}
-//		// 1 - On recupère les paramètres
+//		// 1 - On recupï¿½re les paramï¿½tres
 //		String identifiant = request.getParameter("identifiant");
 //		String motDePasse = request.getParameter("motDePasse");
 //		
-//		// 2 - On va ajouter un utilisateur à la session à partir de l'identifiant et du mot de passe
+//		// 2 - On va ajouter un utilisateur ï¿½ la session ï¿½ partir de l'identifiant et du mot de passe
 //		Utilisateurs utilisateur = new Utilisateurs(identifiant, motDePasse);
 //		request.getSession().setAttribute("Utilisateurs", utilisateur);
 //		
-//		// 3 - On va créer un cookie pour stocker l'identifiant 
+//		// 3 - On va crï¿½er un cookie pour stocker l'identifiant 
 //		Cookie ckId = new Cookie("identifiant", identifiant);
 //		//Cookie ckMdp = new Cookie("motDePasse", motDePasse);
 //		

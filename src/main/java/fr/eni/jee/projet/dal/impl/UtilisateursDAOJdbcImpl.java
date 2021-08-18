@@ -1,4 +1,4 @@
-package fr.eni.jee.projet.dal.Impl;
+package fr.eni.jee.projet.dal.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +18,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 		
 		try (Connection connection = ConnectionProvider.getPoolConnexion()) {
 
-			// Je lance ma requête SQL de selection
+			// Je lance ma requete SQL de selection
 			PreparedStatement pSt = connection.prepareStatement(SQL_SELECT_UTILISATEUR);
 			
 			pSt.setString(1, utilisateur);

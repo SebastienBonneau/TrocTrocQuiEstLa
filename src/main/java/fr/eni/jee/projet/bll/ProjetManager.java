@@ -20,9 +20,8 @@ public class ProjetManager {
 	}
 	
 //	private void validerUtilisateur(Utilisateurs utilisateur) throws BLLException {
-//		// si la note n'est pas comprise entre 1 et 5
 //		if (utilisateur.get_____.equals.utilisateur.get______) {
-//			// on balance une exception "personalisée" de type BusinessException
+//			// on balance une exception "personalisee" de type BLLException
 //			throw new BLLException("L'utilisateur est incorrecte");
 //		}
 //		if ()
