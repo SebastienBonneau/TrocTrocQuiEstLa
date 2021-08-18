@@ -1,6 +1,6 @@
 package fr.eni.jee.projet.bll;
 
-import fr.eni.jee.projet.bo.Utilisateurs;
+import fr.eni.jee.projet.bo.Utilisateur;
 import fr.eni.jee.projet.dal.DALException;
 import fr.eni.jee.projet.dal.DAOFactory;
 import fr.eni.jee.projet.dal.UtilisateursDAO;
@@ -13,17 +13,11 @@ public class ProjetManager {
 		this.utilisateursDAO = DAOFactory.getUtilisateursDOA();
 	}
 
-	public void utilisateurMDP(String identifiant, String motDePasse) throws DALException {
-		Utilisateurs utilisateur = new Utilisateurs(identifiant, motDePasse);
+	public Utilisateur selectUtilisateur(String identifiant, String motDePasse) throws DALException {
 		
-		this.utilisateursDAO.utilisateurMDP(identifiant, motDePasse);
+		Utilisateur userManager = this.utilisateursDAO.selectUtilisateur(identifiant, motDePasse);
+		
+		return userManager;
 	}
 	
-//	private void validerUtilisateur(Utilisateurs utilisateur) throws BLLException {
-//		if (utilisateur.get_____.equals.utilisateur.get______) {
-//			// on balance une exception "personalisee" de type BLLException
-//			throw new BLLException("L'utilisateur est incorrecte");
-//		}
-//		if ()
-//	}
 }

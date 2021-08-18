@@ -4,18 +4,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import fr.eni.jee.projet.bo.Utilisateur;
 import fr.eni.jee.projet.dal.ConnectionProvider;
 import fr.eni.jee.projet.dal.DALException;
 import fr.eni.jee.projet.dal.UtilisateursDAO;
 
 public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	
-	private final static String SQL_SELECT_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE pseudo=? OR email=? AND mot_de_passe=?;";
+	private final static String SQL_SELECT_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE (pseudo=? OR email=?) AND mot_de_passe=?;";
 
 
 	@Override
-	public void utilisateurMDP(String utilisateur, String mot_de_passe) throws DALException {
+	public Utilisateur selectUtilisateur(String utilisateur, String motDePasse) throws DALException {
 		
+		Utilisateur user = null;
 		try (Connection connection = ConnectionProvider.getPoolConnexion()) {
 
 			// Je lance ma requete SQL de selection
@@ -23,17 +25,31 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 			
 			pSt.setString(1, utilisateur);
 			pSt.setString(2, utilisateur);
-			pSt.setString(3, mot_de_passe);
+			pSt.setString(3, motDePasse);
 			
 			ResultSet rs = pSt.executeQuery();
 			
-			if (!rs.next()) {
-				System.out.println("mauvais Utilisateur ou mot de passe.");
+			if (rs.next()) {
+				int no_utilisateur = rs.getInt("no_utilisateur");
+				String pseudo = rs.getString("pseudo");
+				String nom = rs.getString("nom");
+				String prenom = rs.getString("prenom");
+				String email = rs.getString("email");
+				String telephone = rs.getString("telephone");
+				String rue = rs.getString("rue");
+				String code_postal = rs.getString("code_postal");
+				String ville = rs.getString("ville");
+				String mot_de_passe = rs.getString("mot_de_passe");
+				int credit = rs.getInt("credit");
+				boolean administrateur = rs.getBoolean("administrateur");
+				
+				user = new Utilisateur(no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur);
 			}
 			
 		}catch (Exception e) {
 			throw new DALException("une erreur est survenu");
 		}
+		return user;
 	}
 
 }

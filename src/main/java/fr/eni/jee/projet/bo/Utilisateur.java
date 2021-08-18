@@ -1,12 +1,12 @@
 package fr.eni.jee.projet.bo;
 
-public class Utilisateurs {
+public class Utilisateur {
 	
 	private String pseudo ,nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe ;
-	private int	credit ;
+	private int	no_utilisateur, credit ;
 	private boolean administrateur ;
 	
-	public Utilisateurs(String pseudo, String nom, String prenom, String email, String telephone, String rue,
+	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String code_postal, String ville, String mot_de_passe, int credit, boolean administrateur) {
 		super();
 		this.pseudo = pseudo;
@@ -21,13 +21,18 @@ public class Utilisateurs {
 		this.credit = credit;
 		this.administrateur = administrateur;
 	}
-
-	public Utilisateurs(String pseudo2, String email2, String mot_de_passe2) {
-		// TODO Auto-generated constructor stub
+	
+	public Utilisateur(int	no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue,
+			String code_postal, String ville, String mot_de_passe, int credit, boolean administrateur) {
+		this(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur);
+		this.no_utilisateur = no_utilisateur;
 	}
-
-	public Utilisateurs(String identifiant, String mot_de_passe2) {
-		// TODO Auto-generated constructor stub
+	
+	public Utilisateur(String pseudo, String email, String mot_de_passe) {
+		super();
+		this.pseudo = pseudo;
+		this.email = email;
+		this.mot_de_passe = mot_de_passe;
 	}
 
 	public String getPseudo() {
@@ -72,6 +77,10 @@ public class Utilisateurs {
 
 	public boolean isAdministrateur() {
 		return administrateur;
+	}
+
+	public int getNo_utilisateur() {
+		return no_utilisateur;
 	}
 	
 	
