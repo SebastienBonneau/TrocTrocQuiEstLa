@@ -26,6 +26,10 @@ public class Utilisateurs {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Utilisateurs(String identifiant, String mot_de_passe2) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getPseudo() {
 		return pseudo;
 	}

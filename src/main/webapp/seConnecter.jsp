@@ -19,7 +19,7 @@
 		<span class="error"> ${erreur}</span>
 	</c:if>
 	
-	<form method="POST" action="./ServletSeConnecter">
+	<form method="post" action="./ServletSeConnecter">
 	
 		<label for="identifiant"> Identifiant : </label>
 		<input type="text" name="identifiant" id="identifiant" />
