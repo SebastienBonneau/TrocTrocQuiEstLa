@@ -3,6 +3,7 @@ package fr.eni.jee.projet.dal.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import fr.eni.jee.projet.bo.Utilisateur;
 import fr.eni.jee.projet.dal.ConnectionProvider;
@@ -46,9 +47,9 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 				user = new Utilisateur(no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur);
 			}
 			
-		}catch (Exception e) {
+		}catch (SQLException e) {
 			e.printStackTrace(); //je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
-			throw new DALException("une erreur est survenu");
+			throw new DALException("une erreur est survenu sur la BDD. Note Technique : " + e.getMessage());
 		}
 		return user;
 	}

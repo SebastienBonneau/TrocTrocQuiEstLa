@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class accueil
  */
 @WebServlet("/accueil")
-public class accueil extends HttpServlet {
+public class ServletAccueil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("./accueil.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
 	}
 
 
