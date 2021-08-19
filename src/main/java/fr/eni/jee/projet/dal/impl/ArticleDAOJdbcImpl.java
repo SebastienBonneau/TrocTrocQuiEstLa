@@ -21,7 +21,7 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 	private final static String SQL_INSERT_ARTICLE = ";";
 	private final static String SQL_SELECT_ALL_ARTICLE = "select * from ARTICLES_VENDUS;";
 	private final static String SQL_UPDATE_ARTICLE = ";";
-	private final static String SQL_DELETE_ARTICLE = ";";
+	private final static String SQL_DELETE_ARTICLE = "delete from ARTICLES_VENDUS where no_article=?;";
 	
 	public Article ajouterArticle() throws DALException {
 	
@@ -57,7 +57,18 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 		return null;
 	}
 	
-	public Article enchereAnnule() throws DALException {
+	public Article enchereAnnule(int numeroArticle ) throws DALException {
+		
+		try(Connection connection = ConnectionProvider.getPoolConnexion()) {
+			PreparedStatement pSt = connection.prepareStatement(SQL_DELETE_ARTICLE);
+			pSt.setInt(1, numeroArticle);
+			pSt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException("erreur SQL_DELETE_ARTICLE");
+		}
+		
 		return null;
 	}
 }
