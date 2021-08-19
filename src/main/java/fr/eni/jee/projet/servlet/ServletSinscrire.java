@@ -17,19 +17,19 @@ public class ServletSinscrire extends HttpServlet {
 	   
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
 		
 		// 1 - On recupere les informations envoyees par le formulaire
-		String pseudo = request.getParameter("identifiant");
-		String prenom = request.getParameter("identifiant");
-		String telephone = request.getParameter("identifiant");
-		String codePostal = request.getParameter("identifiant");
-		String motDePasse = request.getParameter("identifiant");
-		String nom = request.getParameter("identifiant");
-		String email = request.getParameter("identifiant");
-		String rue = request.getParameter("identifiant");
-		String ville= request.getParameter("identifiant");
-		String confirmation= request.getParameter("identifiant");
+		String pseudo = request.getParameter("pseudo");
+		String prenom = request.getParameter("prenom");
+		String telephone = request.getParameter("telephone");
+		String codePostal = request.getParameter("codePostal");
+		String motDePasse = request.getParameter("motDePasse");
+		String nom = request.getParameter("nom");
+		String email = request.getParameter("email");
+		String rue = request.getParameter("rue");
+		String ville= request.getParameter("ville");
+		//String confirmation= request.getParameter("confirmation");
 
 	
 	

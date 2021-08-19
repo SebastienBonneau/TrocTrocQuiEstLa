@@ -20,12 +20,12 @@ import fr.eni.jee.projet.bo.Utilisateur;
 public class ServletSeConnecter extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private UtilisateurManager projetManager;
+	private UtilisateurManager utilisateurManager;
 	private Utilisateur user = null;
 	
 	public ServletSeConnecter() {
     	super();
-		this.projetManager = new UtilisateurManager();
+		this.utilisateurManager = new UtilisateurManager();
     }
 	
 	
@@ -50,7 +50,7 @@ public class ServletSeConnecter extends HttpServlet {
 			String motDePasse = request.getParameter("motDePasse");
 			
 			// 2 - On appelle la couche BLL avec ces parametres
-			user = this.projetManager.selectUtilisateur(identifiant, motDePasse);
+			user = this.utilisateurManager.selectUtilisateur(identifiant, motDePasse);
 			
 			// 3 - On test si un utilisateur est trouve en BDD
 			if(user != null) { // si user est different de null (!=) on fait une nouvelle session avec user
