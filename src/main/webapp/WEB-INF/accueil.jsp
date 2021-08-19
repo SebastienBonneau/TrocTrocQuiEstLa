@@ -9,9 +9,7 @@
 </head>
 <body>
 
-	<jsp:include page="include/header.jsp"></jsp:include>
+	<jsp:include page="include/listeEnchere.jsp"></jsp:include>
 	
-	<h2>Liste des enchères</h2>
-
 </body>
 </html>
