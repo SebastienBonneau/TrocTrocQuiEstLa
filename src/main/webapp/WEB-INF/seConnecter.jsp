@@ -15,7 +15,7 @@
 		<span> ${erreur}</span>
 	</c:if> <br /><br />
 	
-	<form method="post" action="./ServletSeConnecter">
+	<form method="post" action="${pageContext.request.contextPath }/ServletSeConnecter">
 	
 		<label for="identifiant"> Identifiant : </label>
 		<input type="text" name="identifiant" id="identifiant" />
