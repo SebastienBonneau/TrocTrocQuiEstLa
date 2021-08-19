@@ -1,5 +1,5 @@
 package fr.eni.jee.projet.dal;
 
-public interface ArticleDAO {
+public interface ArticlesDAO {
 
 }
