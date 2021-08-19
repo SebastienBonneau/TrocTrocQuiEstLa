@@ -23,7 +23,7 @@
 			<br />
 			<br />
 		<label for="motDePasse"> Mot de passe : </label>
-		<input type="text" name="motDePasse" id="motDePasse" />
+		<input type="password" name="motDePasse" id="motDePasse" />
 			<br />
 			<br />
 		<button type="submit" > Connexion </button>
