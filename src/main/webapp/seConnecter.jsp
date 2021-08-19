@@ -11,7 +11,7 @@
 
 	<h1> ENI-Enchères</h1>						
 	
-	<c:if test="${!empty erreur}">
+	<c:if test="${!empty erreur}"> <!-- si une erreur d'identifiant ou de mot de passe est detecter on affiche le message personalisee pour ce cas -->
 		<span> ${erreur}</span>
 	</c:if> <br /><br />
 	

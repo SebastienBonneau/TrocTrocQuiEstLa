@@ -27,13 +27,6 @@ public class Utilisateur {
 		this(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur);
 		this.no_utilisateur = no_utilisateur;
 	}
-	
-	public Utilisateur(String pseudo, String email, String mot_de_passe) {
-		super();
-		this.pseudo = pseudo;
-		this.email = email;
-		this.mot_de_passe = mot_de_passe;
-	}
 
 	public String getPseudo() {
 		return pseudo;
@@ -82,7 +75,5 @@ public class Utilisateur {
 	public int getNo_utilisateur() {
 		return no_utilisateur;
 	}
-	
-	
 	
 }

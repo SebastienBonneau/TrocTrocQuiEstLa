@@ -42,27 +42,28 @@ public class ServletSeConnecter extends HttpServlet {
 			// 2 - On appelle la couche BLL avec ces parametres
 			user = this.projetManager.selectUtilisateur(identifiant, motDePasse);
 			
-			if(user != null) {
-				HttpSession session = request.getSession();
-				session.setAttribute("utilisateur", user);
-                request.getRequestDispatcher("./accueil.jsp").forward(request, response);
+			// 3 - On test si un utilisateur est trouve en BDD
+			if(user != null) { // si user est different de null (!=) on fait une nouvelle session avec user
+				HttpSession session = request.getSession(); // nouvelle exemplaire de session
+				session.setAttribute("utilisateur", user); // on valorise l'exemplaire de session avec l'objet user récuperer de la base de donnée après connexion
+                request.getRequestDispatcher("./accueil.jsp").forward(request, response); // une erreur est survenu
 			}else {
-				request.setAttribute("erreur", "une erreur s'est produite durant la création");
-                request.getRequestDispatcher("./seConnecter.jsp").forward(request, response);
+				request.setAttribute("erreur", "Identifiant ou Mot de passe incorrect !"); // message d'erreur en cas d'identifiant ou de mot de passe incorrect
+                request.getRequestDispatcher("./seConnecter.jsp").forward(request, response); // une erreur est survenu
 
            }
 			
 		}
 		catch( DALException e) {
 			// Si jamais on a une exception personalisee on ajoute un attribut "erreur" pour que la JSP puisse l'afficher
-			// on fait ca parce que l'on veut uniquement afficher nos erreurs "m�tier"
+			// on fait ca parce que l'on veut uniquement afficher nos erreurs "metier"
 			request.setAttribute("erreur", e.getMessage());
 			e.printStackTrace(); //je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
 		}
-		// ce catch est effectue si jamais l'exception levee n'est pas de type BusinessException
+		// ce catch est effectue si jamais l'exception levee n'est pas de type DALException
 		catch( Exception e) {
 			// Si jamais on a une exception d'un autre type, on precise dans notre attribut un message generique d'erreur
-			request.setAttribute("erreur", "une erreur s'est produite durant la creation");
+			request.setAttribute("erreur", "une erreur est survenu");
 			e.printStackTrace(); //je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
 		}
 	}
