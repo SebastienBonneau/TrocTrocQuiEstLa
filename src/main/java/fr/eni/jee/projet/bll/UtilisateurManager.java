@@ -10,7 +10,7 @@ public class UtilisateurManager {
 	private UtilisateursDAO utilisateursDAO;
 	
 	public UtilisateurManager() {
-		this.utilisateursDAO = DAOFactory.getUtilisateursDOA();
+		this.utilisateursDAO = DAOFactory.getUtilisateursDAO();
 	}
 
 	public Utilisateur selectUtilisateur(String identifiant, String motDePasse) throws BLLException {
