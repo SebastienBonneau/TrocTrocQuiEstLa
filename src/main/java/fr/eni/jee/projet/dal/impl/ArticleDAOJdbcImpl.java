@@ -29,12 +29,15 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 	}
 	
 	public ArrayList<Article> selectAllArticle() throws DALException {
+		// création d'une liste pour contenir le résultat
 		ArrayList<Article> articles = new ArrayList<Article>();
+		// création d'un token
 		Article article = null;
 		try (Connection connection = ConnectionProvider.getPoolConnexion()) {
+			// statement classique car pas de choix précis on prend tous
 			Statement stmt = connection.createStatement();
 			ResultSet rs = stmt.executeQuery(SQL_SELECT_ALL_ARTICLE);
-			
+			// boucle while pour implémenter la liste et y mettre toutes nos valeurs
 			while (rs.next()) {
 				article = (Article) rs.getArray(article.getNoArticle());
 				articles.add(article);
@@ -44,6 +47,7 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 			e.printStackTrace();
 			throw new DALException("erreur SQL_SELECT_ALL_ARTICLE");
 		}
+		// return de la list d'article
 		return articles;
 	}
 	
