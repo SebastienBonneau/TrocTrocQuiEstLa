@@ -27,7 +27,10 @@ public class UtilisateurManager {
 		return result;
 	}
 	
-	public Utilisateur inscripionUtilsateur(String pseudo, String prenom, String prenom, String codePostal, String motDePasse,String nom, String email, String rue, String ville);
+	public Utilisateur inscripionUtilsateur(String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse) {
+		Utilisateur utilisateurValider = null;
+		return utilisateurValider;
+	}
 	
 	
 }
