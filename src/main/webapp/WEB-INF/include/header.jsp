@@ -25,6 +25,5 @@
 				<a href="${pageContext.request.contextPath}/ServletSinscrire">S'inscrire</a> - <a href="${pageContext.request.contextPath}/ServletSeConnecter">Se connecter</a>
 			</c:if>
 			
-	
 </body>
 </html>

@@ -12,6 +12,19 @@
 	<jsp:include page="include/header.jsp"></jsp:include>
 	
 	<h2>Liste des enchères</h2>
-
+	
+	<form method="post" action="${pageContext.request.contextPath}/ServletAccueil">
+		<label for="Filtre">Filtres : </label>
+		<br />
+		<input type="search" name="artsearch" id="artsearch"/>
+		<br />
+		<label for="categorie">Catégorie : </label>
+		<select name="categorie">
+		    <c:forEach items="${listCategorie}" var="categorie">
+		        <option value="${categorie.id}">${categorie.name}</option>
+		    </c:forEach>
+		</select>
+		
+	</form>
 </body>
 </html>
