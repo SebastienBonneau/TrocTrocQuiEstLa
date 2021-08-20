@@ -14,7 +14,8 @@ import fr.eni.jee.projet.dal.UtilisateursDAO;
 public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	
 	private final static String SQL_SELECT_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE (pseudo=? OR email=?) AND mot_de_passe=?;";
-	
+	private final static String SQL_INSERT_PROFIL = "INSERT INTO UTILISATEURS (no_utilsateur, pseudo, nom, prenom, "
+			+ "email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur) values ('?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?')";
 
 	@Override
 	public Utilisateur selectUtilisateur(String utilisateur, String motDePasse) throws DALException {
@@ -55,4 +56,21 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 		return user;
 	}
 
+	
+	public Utilisateur insertUtilsateur (String no_utilsateur, String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur) throws DALException {
+	
+	
+	
+	
+	
+	}
+	
+	
+	
+	
+	
+	
 }
+}
+
