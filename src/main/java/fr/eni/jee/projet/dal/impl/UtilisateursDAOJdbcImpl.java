@@ -1,7 +1,6 @@
 package fr.eni.jee.projet.dal.impl;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +15,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	
 	private final static String SQL_SELECT_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE (pseudo=? OR email=?) AND mot_de_passe=?;";
 	private final String SQL_INSERT_PROFIL = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, "
-			+ "email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur) values ('?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?')";
+			+ "email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) values (?, ?, ?, ?, ?, ?, ?, ?, ?, 100, 0);";
 
 	@Override
 	public Utilisateur selectUtilisateur(String utilisateur, String motDePasse) throws DALException {
@@ -57,31 +56,28 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 		return user;
 	}	
 
-	@Override
-    public void insertUtilsateur (String pseudo, String nom, String prenom, String email, String telephone,
-            String rue, String codePostal, String ville, String motDePasse) throws DALException {
+	public void insertUtilsateur (Utilisateur user) throws DALException {
        
-        Utilisateur profil = null;
        
         try (Connection connection = ConnectionProvider.getPoolConnexion()) {
 	        // Je lance ma requete SQL de selection
-	        PreparedStatement pSt = connection.prepareStatement(this.SQL_INSERT_PROFIL, Statement.RETURN_GENERATED_KEYS);
+	        PreparedStatement pSt = connection.prepareStatement(this.SQL_INSERT_PROFIL, Statement.RETURN_GENERATED_KEYS );
 	               
-	        pSt.setString(1, pseudo);
-	        pSt.setString(2, nom);
-	        pSt.setString(3, prenom);
-	        pSt.setString(4, email);
-	        pSt.setString(5, telephone);
-	        pSt.setString(6, rue);
-	        pSt.setString(7, codePostal);
-	        pSt.setString(8, ville);
-	        pSt.setString(9, motDePasse);
+	        pSt.setString(1, user.getPseudo());
+	        pSt.setString(2, user.getNom());
+	        pSt.setString(3, user.getPrenom());
+	        pSt.setString(4, user.getEmail());
+	        pSt.setString(5, user.getTelephone());
+	        pSt.setString(6, user.getRue());
+	        pSt.setString(7, user.getCode_postal());
+	        pSt.setString(8, user.getVille());
+	        pSt.setString(9, user.getMot_de_passe());
    
 	        pSt.executeUpdate();
-	        ResultSet clesGenerees = pSt.getGeneratedKeys(); // Récupérer les colonnes auto incrémentée
+            ResultSet clesGenerees = pSt.getGeneratedKeys(); // Récupérer les colonnes auto incrémentée
             if (clesGenerees.next()) {
                 int idGenere = clesGenerees.getInt(1);
-                profil.setNo_utilisateur(idGenere);
+                user.setNo_utilisateur(idGenere);
             }
         }catch (SQLException e) {
             e.printStackTrace(); //je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee

@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.jee.projet.bll.BLLException;
 import fr.eni.jee.projet.bll.UtilisateurManager;
-import fr.eni.jee.projet.bo.Utilisateur;
 
 
 /**
@@ -20,13 +19,14 @@ import fr.eni.jee.projet.bo.Utilisateur;
 public class ServletSinscrire extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private UtilisateurManager utilisateurManager;
-	private Utilisateur user;
+	private UtilisateurManager utilisateurManager = new UtilisateurManager();
 
-	public ServletSinscrire(UtilisateurManager utilisateurManager) {
+	public ServletSinscrire() {
 		super();
-		this.utilisateurManager = utilisateurManager;
+		// TODO Auto-generated constructor stub
 	}
+
+
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,15 +47,15 @@ public class ServletSinscrire extends HttpServlet {
 		if(motDePasse.equals(confirmation)) {
 		
 			// 2 - On appelle la couche BLL avec ces parametres
-		try {
-			
-			user = this.utilisateurManager.inscripionUtilsateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
-		} catch (BLLException e) {
-			e.printStackTrace();
+			try {
+				
+				this.utilisateurManager.inscripionUtilsateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
+			} catch (BLLException e) {
+				e.printStackTrace();
+			}
 		}
-		
 			request.getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response); // une erreur est survenu
-		}
+		
 
 	}
 	

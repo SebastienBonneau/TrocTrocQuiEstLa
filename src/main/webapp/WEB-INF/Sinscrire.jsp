@@ -10,7 +10,7 @@
 
 <h1>Mon profil</h1>
 
-<form method="post" action="${pageContext.request.contextPath }/ServletSinscrire">
+<form method="post" action="${pageContext.request.contextPath}/ServletSinscrire">
 		<label for="pseudo"> Pseudo : </label>
 		<input type="text" name="pseudo" id="pseudo" required="required" />
 	<br />
