@@ -18,7 +18,7 @@ import fr.eni.jee.projet.dal.DALException;
 public class ArticleDAOJdbcImpl implements ArticlesDAO {
 
 	private final static String SQL_INSERT_ARTICLE = "insert into ARTICLES_VENDUS (no_articles, nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente, image) "
-													+ "values no_article=?, nom_article=?, description=?, date_debut_enchere=?, date_fin_enchere=?, prix_inital=?, prix_vente = ?, no_utilisateur=?, no_categorie=?, etat_vente=? image=?;";
+													+ "values (no_article=?, nom_article=?, description=?, date_debut_enchere=?, date_fin_enchere=?, prix_inital=?, prix_vente = ?, no_utilisateur=?, no_categorie=?, etat_vente=? image=?);";
 	private final static String SQL_SELECT_ALL_ARTICLE = "select * from ARTICLES_VENDUS;";
 	private final static String SQL_UPDATE_ETAT_ARTICLE = "update ARTICLES_VENDUS set etat_vente=? where no_article=?;";
 	private final static String SQL_DELETE_ARTICLE = "delete from ARTICLES_VENDUS where no_article=?;";
