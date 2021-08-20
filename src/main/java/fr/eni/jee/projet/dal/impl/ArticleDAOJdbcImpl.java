@@ -17,18 +17,17 @@ import fr.eni.jee.projet.dal.DALException;
 
 public class ArticleDAOJdbcImpl implements ArticlesDAO {
 
-	private final static String SQL_INSERT_ARTICLE = "insert into ARTICLES_VENDUS where no_article=?, nom_article=?,"
-			+ " description=?, date_debut_enchere=?, date_fin_enchere=?, prix_inital=?, prix_vente = ?,"
-			+ " no_utilisateur=?, no_categorie=?, etat_vente=? image=?;";
+	private final static String SQL_INSERT_ARTICLE = "insert into ARTICLES_VENDUS (no_articles, nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente, image) "
+													+ "values no_article=?, nom_article=?, description=?, date_debut_enchere=?, date_fin_enchere=?, prix_inital=?, prix_vente = ?, no_utilisateur=?, no_categorie=?, etat_vente=? image=?;";
 	private final static String SQL_SELECT_ALL_ARTICLE = "select * from ARTICLES_VENDUS;";
 	private final static String SQL_UPDATE_ETAT_ARTICLE = "update ARTICLES_VENDUS set etat_vente=? where no_article=?;";
 	private final static String SQL_DELETE_ARTICLE = "delete from ARTICLES_VENDUS where no_article=?;";
 	
 	
-	@SuppressWarnings("null")
-	public Article ajouterArticle() throws DALException {
 	
-		Article article = null;
+	public void ajouterArticle(Article article) throws DALException {
+	
+		
 		try(Connection connection = ConnectionProvider.getPoolConnexion()){
 			
 			PreparedStatement pSt = connection.prepareStatement(SQL_INSERT_ARTICLE);
@@ -49,7 +48,6 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 			throw new DALException("errreur SQL_INSERT_ARTICLE");
 		}
 		
-		return null;
 	}
 	
 	public ArrayList<Article> selectAllArticle() throws DALException {
@@ -76,9 +74,9 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 	}
 	
 	
-	@SuppressWarnings("null")
-	public Article changementEtatArticle() throws DALException {
-		Article article = null;
+	
+	public void changementEtatArticle(Article article) throws DALException {
+		
 		try(Connection connection = ConnectionProvider.getPoolConnexion()) {
 			PreparedStatement pSt = connection.prepareStatement(SQL_UPDATE_ETAT_ARTICLE);
 			pSt.setString(1, article.getEtatVente());
@@ -89,10 +87,10 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 			e.printStackTrace();
 			throw new DALException("erreur SQL_UPDATE_ETAT_ARTICLE");
 		}
-		return null;
+		
 	}
 	
-	public Article enchereAnnule(int numeroArticle ) throws DALException {
+	public void enchereAnnule(int numeroArticle ) throws DALException {
 		
 		try(Connection connection = ConnectionProvider.getPoolConnexion()) {
 			PreparedStatement pSt = connection.prepareStatement(SQL_DELETE_ARTICLE);
@@ -104,8 +102,9 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 			throw new DALException("erreur SQL_DELETE_ARTICLE");
 		}
 		
-		return null;
 	}
+
+	
 	
 	
 }
