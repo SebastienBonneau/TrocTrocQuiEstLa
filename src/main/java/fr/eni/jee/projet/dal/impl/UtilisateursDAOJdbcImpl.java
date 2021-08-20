@@ -59,6 +59,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	
 	public Utilisateur insertUtilsateur (String no_utilsateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur) throws DALException {
+				return null;
 	
 	
 	
@@ -72,5 +73,5 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	
 	
 }
-}
+
 
