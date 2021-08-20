@@ -17,16 +17,14 @@ public class CategorieManager {
 
 	public List<Categorie> selectCategorie() throws BLLException {
 		
-		List<Categorie> listCategorie = null;
-		
+		List<Categorie> listeCategorie = null;
 		try {
-			listCategorie = this.categorieDAO.ListerCategorie();
+			listeCategorie = this.categorieDAO.ListerCategorie();
 		} catch (DALException e) {
 			e.printStackTrace();
 			throw new BLLException(e.getMessage());
 		}
-		
-		return listCategorie;
+		return listeCategorie;
 	}
 
 }

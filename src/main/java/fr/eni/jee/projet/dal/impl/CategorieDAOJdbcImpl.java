@@ -14,11 +14,11 @@ import fr.eni.jee.projet.dal.DALException;
 
 public class CategorieDAOJdbcImpl implements CategorieDAO {
 	
-	private final static String SQL_SELECT_CATEGORIE = "SELECT * FROM CATEGORIES ORDER BY libelle;"; 
+	private final static String SQL_SELECT_CATEGORIE = "SELECT * FROM CATEGORIES;"; 
 	
 	public List<Categorie> ListerCategorie() throws DALException{
 		
-		List<Categorie> listerCategorie = new ArrayList<>();
+		List<Categorie> listeCategorie = new ArrayList<>();
 		try (Connection connection = ConnectionProvider.getPoolConnexion()) {
 
 			// Je lance ma requete SQL de selection
@@ -31,12 +31,12 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
 				String libelle = rs.getString("libelle");
 				Categorie categorie = new Categorie(no_categorie, libelle);
 				
-				listerCategorie.add(categorie);
+				listeCategorie.add(categorie);
 			}	
 		}catch (SQLException e) {
 				e.printStackTrace(); //je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
 				throw new DALException("une erreur est survenu sur la BDD. Note Technique : " + e.getMessage());
 			}
-		return listerCategorie;
+		return listeCategorie;
 	}
 }
