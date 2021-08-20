@@ -21,18 +21,23 @@ public class ServletAccueil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private CategorieManager categorieManager;
-	private List<Categorie> listeCategorie;
 
+	public ServletAccueil() {
+    	super();
+		this.categorieManager = new CategorieManager();
+    }
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		listeCategorie(request, response);
+		
+		listeDeCategorie(request, response);
 	}
 	
-	private void listeCategorie(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+	
+	private void listeDeCategorie(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 		
 		try {
 			
-			listeCategorie = this.categorieManager.selectCategorie();
+			List<Categorie> listeCategorie = this.categorieManager.selectCategorie();
 			request.setAttribute("listeCategorie", listeCategorie);
 	        request.getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response); // une erreur est survenu
 			
@@ -55,7 +60,7 @@ public class ServletAccueil extends HttpServlet {
 		
 		request.setAttribute("selectedCatID", categorieId);
 		
-		listeCategorie(request, response);
+		listeDeCategorie(request, response);
 	}
 	
 	

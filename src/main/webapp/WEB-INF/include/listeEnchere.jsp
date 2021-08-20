@@ -32,16 +32,17 @@
 		<br />
 		<input type="search" name="article" id="article"/>
 		<br />
-		<label for="categorie">Catégorie : </label>
+		Categorie :&nbsp;
 		<select name="categorie">
-		    <c:forEach items="${listCategorie}" var="categorie">
-		        <option value="${categorie.id}"
-		        	<cif test="${categorie.id eq selectedCatID}"selected="selected"></cif>
+		    <c:forEach items="${listeCategorie}" var="categorie">
+		        <option value="${categorie.no_categorie}"
+		        	<cif test="${categorie.no_categorie eq selectedCatID}"selected="selected"></cif>
 		        	>
 		        	${categorie.libelle}
 		        </option>
 		    </c:forEach>
 		</select>
+		<input type="submit" value="Rechercher"/>
 	</form>
 </body>
 </html>

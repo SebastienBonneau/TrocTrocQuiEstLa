@@ -17,7 +17,7 @@ public class CategorieManager {
 
 	public List<Categorie> selectCategorie() throws BLLException {
 		
-		List<Categorie> listeCategorie;
+		List<Categorie> listeCategorie = null;
 		try {
 			listeCategorie = this.categorieDAO.ListerCategorie();
 		} catch (DALException e) {
