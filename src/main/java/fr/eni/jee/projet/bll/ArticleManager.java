@@ -10,12 +10,36 @@ public class ArticleManager {
 	private ArticlesDAO daoArticle;
 	
 
+	public void validerArticle (Article a) throws BLLException {
+		if (a.getNomArticle() == null) {
+			throw new BLLException("Erreur n° Article");
+		}
+		if (a.getDescription() == null) {
+			throw new BLLException("Erreur Description");
+		}
+		if (a.getDateDebutEnchere() == null) {
+			throw new BLLException("Erreur date début d'enchère");
+		}
+		if (a.getDateFinEnchere() == null) {
+			throw new BLLException("Erreur date fin enchère");
+		}
+		if (a.getNoUtilisateur() < 0) {
+			throw new BLLException("Erreur n° Utilisateur");
+		}
+		if (a.getNoCategorie() < 0) {
+			throw new BLLException("Erreur n° Catégorie");
+		}
+		if (a.getEtatVente() == null) {
+			throw new BLLException("Erreur état vente");
+		}
+	}
 	
 	
 	
 	public void changementEtat (Article a) throws BLLException {
 		
 		try {
+			this.validerArticle(a);
 			daoArticle.changementEtatArticle(a);
 		} catch (DALException e) {
 			throw new BLLException("Erreur méthode changementEtat" + e.getMessage());
@@ -34,6 +58,7 @@ public class ArticleManager {
 	
 	public void updateEtatArticle (Article a) throws BLLException {
 		try {
+			this.validerArticle(a);
 			daoArticle.changementEtatArticle(a);
 		} catch (DALException e) {
 			throw new BLLException("Erreur méthode updateEtatArticle" + e.getMessage());
