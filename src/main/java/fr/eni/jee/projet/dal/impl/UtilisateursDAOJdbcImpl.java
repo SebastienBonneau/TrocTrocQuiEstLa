@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import fr.eni.jee.projet.bo.Utilisateur;
 import fr.eni.jee.projet.dal.ConnectionProvider;
@@ -14,8 +15,8 @@ import fr.eni.jee.projet.dal.UtilisateursDAO;
 public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	
 	private final static String SQL_SELECT_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE (pseudo=? OR email=?) AND mot_de_passe=?;";
-	private final static String SQL_INSERT_PROFIL = "INSERT INTO UTILISATEURS (no_utilsateur, pseudo, nom, prenom, "
-			+ "email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur) values ('?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?')";
+	private final String SQL_INSERT_PROFIL = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, "
+			+ "email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur) values ('?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?')";
 
 	@Override
 	public Utilisateur selectUtilisateur(String utilisateur, String motDePasse) throws DALException {
@@ -54,23 +55,39 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 			throw new DALException("une erreur est survenu sur la BDD. Note Technique : " + e.getMessage());
 		}
 		return user;
-	}
+	}	
 
-	
-	public Utilisateur insertUtilsateur (String no_utilsateur, String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur) throws DALException {
-				return null;
-	
-	
-	
-	
-	
-	}
-	
-	
-	
-	
-	
+	@Override
+    public void insertUtilsateur (String pseudo, String nom, String prenom, String email, String telephone,
+            String rue, String codePostal, String ville, String motDePasse) throws DALException {
+       
+        Utilisateur profil = null;
+       
+        try (Connection connection = ConnectionProvider.getPoolConnexion()) {
+	        // Je lance ma requete SQL de selection
+	        PreparedStatement pSt = connection.prepareStatement(this.SQL_INSERT_PROFIL, Statement.RETURN_GENERATED_KEYS);
+	               
+	        pSt.setString(1, pseudo);
+	        pSt.setString(2, nom);
+	        pSt.setString(3, prenom);
+	        pSt.setString(4, email);
+	        pSt.setString(5, telephone);
+	        pSt.setString(6, rue);
+	        pSt.setString(7, codePostal);
+	        pSt.setString(8, ville);
+	        pSt.setString(9, motDePasse);
+   
+	        pSt.executeUpdate();
+	        ResultSet clesGenerees = pSt.getGeneratedKeys(); // Récupérer les colonnes auto incrémentée
+            if (clesGenerees.next()) {
+                int idGenere = clesGenerees.getInt(1);
+                profil.setNo_utilisateur(idGenere);
+            }
+        }catch (SQLException e) {
+            e.printStackTrace(); //je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
+            throw new DALException("une erreur est survenu sur la BDD. Note Technique : " + e.getMessage());
+        }
+    }	
 	
 }
 

@@ -27,10 +27,15 @@ public class UtilisateurManager {
 		return result;
 	}
 	
-	public Utilisateur inscripionUtilsateur(String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse) {
-		Utilisateur utilisateurValider = null;
-		
-		return utilisateurValider;
+	public Utilisateur inscripionUtilsateur(String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse) throws BLLException {
+		 Utilisateur result = null;
+		try {
+			utilisateursDAO.insertUtilsateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
+		} catch (DALException e) {
+			e.printStackTrace();
+			throw new BLLException(e.getMessage());
+		}
+		return result;
 	}
 	
 	
