@@ -6,9 +6,7 @@ import fr.eni.jee.projet.bo.Article;
 
 public interface ArticlesDAO {
 
-	
 	void ajouterArticle(Article article) throws DALException;
-	
 	
 	List<Article> selectAllArticle() throws DALException;
  
