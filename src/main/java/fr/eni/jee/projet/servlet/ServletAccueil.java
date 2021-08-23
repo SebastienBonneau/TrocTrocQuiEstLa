@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.jee.projet.bll.ArticleManager;
 import fr.eni.jee.projet.bll.BLLException;
 import fr.eni.jee.projet.bll.CategorieManager;
+import fr.eni.jee.projet.bo.Article;
 import fr.eni.jee.projet.bo.Categorie;
 
 /**
@@ -21,10 +23,12 @@ public class ServletAccueil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private CategorieManager categorieManager;
+	private ArticleManager articleManager;
 
 	public ServletAccueil() {
     	super();
 		this.categorieManager = new CategorieManager();
+		this.articleManager = new ArticleManager();
     }
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,6 +43,13 @@ public class ServletAccueil extends HttpServlet {
 			
 			List<Categorie> listeCategorie = this.categorieManager.selectCategorie();
 			request.setAttribute("listeCategorie", listeCategorie);
+			
+			List<Article> listeArticle = null;
+				
+			listeArticle = this.articleManager.selectEnchere();
+			
+			request.setAttribute("listeArticle", listeArticle);
+			
 	        request.getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response); // une erreur est survenu
 			
 		}
@@ -56,8 +67,10 @@ public class ServletAccueil extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int categorieId = Integer.parseInt(request.getParameter("categorie"));
-		
+		int categorieId = 0;
+		if( request.getParameter("categorie") != null) {
+			categorieId = Integer.parseInt(request.getParameter("categorie"));
+		}
 		request.setAttribute("selectedCatID", categorieId);
 		
 		listeDeCategorie(request, response);
