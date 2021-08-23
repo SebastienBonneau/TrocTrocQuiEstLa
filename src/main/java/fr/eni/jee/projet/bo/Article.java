@@ -1,14 +1,14 @@
 package fr.eni.jee.projet.bo;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Article {
 
 	private int no_article, prix_initial, prix_vente, no_utilisateur, no_categorie;
 	private String nom_article, description, etat_vente, image;
-	private Date date_debut_enchere, date_fin_enchere;
+	private LocalDate date_debut_enchere, date_fin_enchere;
 
-	public Article(int no_article, String nom_article, String description, Date date_debut_enchere, Date date_fin_enchere, int prix_initial, int prix_vente,
+	public Article(int no_article, String nom_article, String description, LocalDate date_debut_enchere, LocalDate date_fin_enchere, int prix_initial, int prix_vente,
 			int no_utilisateur, int no_categorie, String etat_vente, String image) {
 		super();
 		this.no_article = no_article;
@@ -60,11 +60,11 @@ public class Article {
 		return image;
 	}
 
-	public Date getDate_debut_enchere() {
+	public LocalDate getDate_debut_enchere() {
 		return date_debut_enchere;
 	}
 
-	public Date getDate_fin_enchere() {
+	public LocalDate getDate_fin_enchere() {
 		return date_fin_enchere;
 	}
 	

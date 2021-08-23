@@ -30,21 +30,6 @@ public class ServeltListeDesEncheres extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Article> listeArticle = null;
-		
-		try {
-			
-			listeArticle = this.articleManager.selectEnchere();
-		}
-		catch( BLLException e) {
-			// Si jamais on a une exception personalisee on ajoute un attribut "erreur" pour que la JSP puisse l'afficher
-			// on fait ca parce que l'on veut uniquement afficher nos erreurs "metier"
-			request.setAttribute("erreur", e.getMessage());
-			e.printStackTrace(); //je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
-		}
-		
-		request.setAttribute("listeArticle", listeArticle);
-        request.getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response); // une erreur est survenu
 		
 	}
 

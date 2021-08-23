@@ -1,6 +1,9 @@
 package fr.eni.jee.projet.servlet;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,23 +19,24 @@ import fr.eni.jee.projet.bll.ArticleManager;
 public class ServletVendreUnArticle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	private ArticleManager articleManager = new ArticleManager();
+	private ArticleManager articleManager;
 	
 	public ServletVendreUnArticle() {
 		super();
+		this.articleManager = new ArticleManager();
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int no_article = request.getParameter("no_article");
+		int no_article = Integer.parseInt(request.getParameter("no_article"));
 		String nom_article = request.getParameter("nom_article");
 		String description = request.getParameter("description");
-		Date date_debut_enchere = request.getParameter("date_debut_enchere");
-		Date date_fin_enchere = request.getParameter("date_fin_enchere");
-		int prix_initial = request.getParameter("prix_initial");
-		int prix_vente = request.getParameter("prix_vente");
-		int no_utilisateur = request.getParameter("no_utilisateur");
-		int no_categorie = request.getParameter("no_categorie");
+		LocalDate date_debut_enchere = LocalDate.parse(request.getParameter("date_debut_enchere"));
+		LocalDate date_fin_enchere = LocalDate.parse(request.getParameter("date_fin_enchere"));
+		int prix_initial = Integer.parseInt(request.getParameter("prix_initial"));
+		int prix_vente = Integer.parseInt(request.getParameter("prix_vente"));
+		int no_utilisateur = Integer.parseInt(request.getParameter("no_utilisateur"));
+		int no_categorie = Integer.parseInt(request.getParameter("no_categorie"));
 		String etat_vente= request.getParameter("etat_vente");
 		String image = request.getParameter("image");
 		

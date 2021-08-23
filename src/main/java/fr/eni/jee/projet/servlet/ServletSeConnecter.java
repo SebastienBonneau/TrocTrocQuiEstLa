@@ -56,7 +56,7 @@ public class ServletSeConnecter extends HttpServlet {
 			if(user != null) { // si user est different de null (!=) on fait une nouvelle session avec user
 				HttpSession session = request.getSession(); // nouvelle exemplaire de session
 				session.setAttribute("utilisateur", user); // on valorise l'exemplaire de session avec l'objet user récuperer de la base de donnée après connexion
-                request.getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response); // une erreur est survenu
+                request.getRequestDispatcher("/accueil").forward(request, response); // une erreur est survenu
 			}else {
 				request.setAttribute("erreur", "Identifiant ou Mot de passe incorrect !"); // message d'erreur en cas d'identifiant ou de mot de passe incorrect
                 request.getRequestDispatcher("/WEB-INF/seConnecter.jsp").forward(request, response); // une erreur est survenu

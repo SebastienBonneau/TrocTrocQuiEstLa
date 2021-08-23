@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,11 +34,18 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 		try(Connection connection = ConnectionProvider.getPoolConnexion()){
 			
 			PreparedStatement pSt = connection.prepareStatement(SQL_INSERT_ARTICLE);
+			
+			// l'API JDBC Utilise java.sql.Date et java.sql.Time pour ses preparedStatements
+			// On a utilisé de bnotr côté LocalDate
+			// => du coup : on va devoir faire une CONVERSION avec Date.valueOf()
+			Date sqlDate_debut_enchere = Date.valueOf(article.getDate_debut_enchere());
+			Date sqlDate_fin_enchere = Date.valueOf(article.getDate_fin_enchere());
+			
 			pSt.setInt(1, article.getNo_article() );
 			pSt.setString(2, article.getNom_article() );
 			pSt.setString(3, article.getDescription() );
-			pSt.setDate(4,(Date) article.getDate_debut_enchere() );
-			pSt.setDate(5,(Date) article.getDate_fin_enchere() );
+			pSt.setDate(4, sqlDate_debut_enchere );
+			pSt.setDate(5, sqlDate_fin_enchere );
 			pSt.setInt(6, article.getPrix_initial() );
 			pSt.setInt(7, article.getPrix_vente() );
 			pSt.setInt(8, article.getNo_utilisateur() );
@@ -63,19 +71,20 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 			ResultSet rs = pSt.executeQuery();
 			// boucle while pour implementer la liste et y mettre toutes nos valeurs
 			while (rs.next()) {
-				int no_article = rs.getInt("no_article");
-				String nom_article = rs.getString("nom_article");
-				String description = rs.getString("description");
-				Date date_debut_enchere = rs.getDate("date_debut_enchere");
-				Date date_fin_enchere = rs.getDate("date_fin_enchere");
-				int prix_initial = rs.getInt("prix_initial");
-				int prix_vente = rs.getInt("prix_vente");
-				int no_utilisateur = rs.getInt("no_utilisateur");
-				int no_categorie = rs.getInt("no_categorie");
-				String etat_vente = rs.getString("etat_vente");
-				String image = rs.getString("image");
-				
-				Article article = new Article(no_article, nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente, image);
+				Article article = new Article(
+					rs.getInt("no_article"),
+					rs.getString("nom_article"),
+					rs.getString("description"),
+					rs.getDate("date_debut_enchere").toLocalDate(),
+					rs.getDate("date_fin_enchere").toLocalDate(),
+					rs.getInt("prix_initial"),
+					rs.getInt("prix_vente"),
+					rs.getInt("no_utilisateur"),
+					rs.getInt("no_categorie"),
+					rs.getString("etat_vente"),
+					rs.getString("image")
+				);
+				//Article article = new Article(no_article, nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente, image);
 				listeArticle.add(article);
 			}			
 		} catch (SQLException e) {
