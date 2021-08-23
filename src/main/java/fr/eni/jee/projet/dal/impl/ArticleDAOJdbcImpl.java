@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.eni.jee.projet.bo.Article;
 import fr.eni.jee.projet.dal.ArticlesDAO;
@@ -31,16 +32,16 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 		try(Connection connection = ConnectionProvider.getPoolConnexion()){
 			
 			PreparedStatement pSt = connection.prepareStatement(SQL_INSERT_ARTICLE);
-			pSt.setInt(1, article.getNoArticle() );
-			pSt.setString(2, article.getNomArticle() );
+			pSt.setInt(1, article.getNo_article() );
+			pSt.setString(2, article.getNom_article() );
 			pSt.setString(3, article.getDescription() );
-			pSt.setDate(4,(Date) article.getDateDebutEnchere() );
-			pSt.setDate(5,(Date) article.getDateFinEnchere() );
-			pSt.setInt(6, article.getPrixInitial() );
-			pSt.setInt(7, article.getPrixVente());
-			pSt.setInt(8, article.getNoUtilisateur());
-			pSt.setInt(9, article.getNoCategorie());
-			pSt.setString(10, article.getEtatVente() );
+			pSt.setDate(4,(Date) article.getDate_debut_enchere() );
+			pSt.setDate(5,(Date) article.getDate_fin_enchere() );
+			pSt.setInt(6, article.getPrix_initial() );
+			pSt.setInt(7, article.getPrix_vente() );
+			pSt.setInt(8, article.getNo_utilisateur() );
+			pSt.setInt(9, article.getNo_categorie() );
+			pSt.setString(10, article.getEtat_vente() );
 			pSt.setString(11, article.getImage());
 			pSt.executeUpdate();
 		} catch (SQLException e) {
@@ -50,18 +51,30 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 		
 	}
 	
-	public ArrayList<Article> selectAllArticle() throws DALException {
-		// cr�ation d'une liste pour contenir le r�sultat
-		ArrayList<Article> articles = new ArrayList<Article>();
-		// cr�ation d'un token
-		Article article = null;
+	public List<Article> selectAllArticle() throws DALException {
+		// creation d'une liste pour contenir le resultat
+		List<Article> articles = new ArrayList<Article>();
+		// creation d'un token
+		Article article;
 		try (Connection connection = ConnectionProvider.getPoolConnexion()) {
-			// statement classique car pas de choix pr�cis on prend tous
+			// statement classique car pas de choix precis on prend tous
 			Statement stmt = connection.createStatement();
 			ResultSet rs = stmt.executeQuery(SQL_SELECT_ALL_ARTICLE);
-			// boucle while pour impl�menter la liste et y mettre toutes nos valeurs
+			// boucle while pour implementer la liste et y mettre toutes nos valeurs
 			while (rs.next()) {
-				article = (Article) rs.getArray(article.getNoArticle());
+				article = new Article(
+					rs.getInt("no_article"),
+					rs.getString("no_article"),
+					rs.getString("description"),
+					rs.getDate("date_debut_enchere"),
+					rs.getDate("date_fin_enchere"),
+					rs.getInt("prix_initial"),
+					rs.getInt("prix_vente"),
+					rs.getInt("no_utilisateur"),
+					rs.getInt("no_categorie"),
+					rs.getString("etat_vente"),
+					rs.getString("image")
+				);
 				articles.add(article);
 			}			
 			
@@ -79,8 +92,8 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 		
 		try(Connection connection = ConnectionProvider.getPoolConnexion()) {
 			PreparedStatement pSt = connection.prepareStatement(SQL_UPDATE_ETAT_ARTICLE);
-			pSt.setString(1, article.getEtatVente());
-			pSt.setInt(2, article.getNoArticle());
+			pSt.setString(1, article.getEtat_vente());
+			pSt.setInt(2, article.getNo_article());
 			pSt.executeUpdate();
 			
 		} catch (SQLException e) {

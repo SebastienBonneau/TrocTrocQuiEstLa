@@ -4,118 +4,68 @@ import java.util.Date;
 
 public class Article {
 
-	private int noArticle, prixInitial, prixVente, noUtilisateur, noCategorie;
-	private String nomArticle, description, etatVente, image;
-	private Date dateDebutEnchere, DateFinEnchere;
-	
-	
-	public int getNoArticle() {
-		return noArticle;
+	private int no_article, prix_initial, prix_vente, no_utilisateur, no_categorie;
+	private String nom_article, description, etat_vente, image;
+	private Date date_debut_enchere, date_fin_enchere;
+
+	public Article(int no_article, String nom_article, String description, Date date_debut_enchere, Date date_fin_enchere, int prix_initial, int prix_vente,
+			int no_utilisateur, int no_categorie, String etat_vente, String image) {
+		super();
+		this.no_article = no_article;
+		this.nom_article = nom_article;
+		this.description = description;
+		this.date_debut_enchere = date_debut_enchere;
+		this.date_fin_enchere = date_fin_enchere;
+		this.prix_initial = prix_initial;
+		this.prix_vente = prix_vente;
+		this.no_utilisateur = no_utilisateur;
+		this.no_categorie = no_categorie;
+		this.etat_vente = etat_vente;
+		this.image = image;
 	}
 
-	public int getPrixInitial() {
-		return prixInitial;
+	public int getNo_article() {
+		return no_article;
 	}
 
-	public int getPrixVente() {
-		return prixVente;
+	public int getPrix_initial() {
+		return prix_initial;
 	}
 
-	public int getNoUtilisateur() {
-		return noUtilisateur;
+	public int getPrix_vente() {
+		return prix_vente;
 	}
 
-	public int getNoCategorie() {
-		return noCategorie;
+	public int getNo_utilisateur() {
+		return no_utilisateur;
 	}
 
-	public String getNomArticle() {
-		return nomArticle;
+	public int getNo_categorie() {
+		return no_categorie;
+	}
+
+	public String getNom_article() {
+		return nom_article;
 	}
 
 	public String getDescription() {
 		return description;
 	}
 
-	public String getEtatVente() {
-		return etatVente;
+	public String getEtat_vente() {
+		return etat_vente;
 	}
 
 	public String getImage() {
 		return image;
 	}
 
-	public Date getDateDebutEnchere() {
-		return dateDebutEnchere;
+	public Date getDate_debut_enchere() {
+		return date_debut_enchere;
 	}
 
-	public Date getDateFinEnchere() {
-		return DateFinEnchere;
+	public Date getDate_fin_enchere() {
+		return date_fin_enchere;
 	}
-
-	public Article(int noArticle, int prixInitial, int prixVente, int noUtilisateur, int noCategorie, String nomArticle,
-			String description, String etatVente, String image, Date dateDebutEnchere, Date dateFinEnchere) {
-		super();
-		this.noArticle = noArticle;
-		this.prixInitial = prixInitial;
-		this.prixVente = prixVente;
-		this.noUtilisateur = noUtilisateur;
-		this.noCategorie = noCategorie;
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.etatVente = etatVente;
-		this.image = image;
-		this.dateDebutEnchere = dateDebutEnchere;
-		DateFinEnchere = dateFinEnchere;
-	}
-
-	public void setNoArticle(int noArticle) {
-		this.noArticle = noArticle;
-	}
-
-	public void setPrixInitial(int prixInitial) {
-		this.prixInitial = prixInitial;
-	}
-
-	public void setPrixVente(int prixVente) {
-		this.prixVente = prixVente;
-	}
-
-	public void setNoUtilisateur(int noUtilisateur) {
-		this.noUtilisateur = noUtilisateur;
-	}
-
-	public void setNoCategorie(int noCategorie) {
-		this.noCategorie = noCategorie;
-	}
-
-	public void setNomArticle(String nomArticle) {
-		this.nomArticle = nomArticle;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public void setEtatVente(String etatVente) {
-		this.etatVente = etatVente;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-	public void setDateDebutEnchere(Date dateDebutEnchere) {
-		this.dateDebutEnchere = dateDebutEnchere;
-	}
-
-	public void setDateFinEnchere(Date dateFinEnchere) {
-		DateFinEnchere = dateFinEnchere;
-	}
-	
-	
-	
-	
-	
 	
 }
