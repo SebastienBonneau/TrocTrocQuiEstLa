@@ -55,7 +55,9 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 		}
 		return user;
 	}	
-
+	/**
+	 * Insertion d'un Nouvel Utilisateur
+	 */
 	public void insertUtilsateur (Utilisateur user) throws DALException {
        
        
