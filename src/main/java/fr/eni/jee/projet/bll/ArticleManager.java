@@ -5,11 +5,15 @@ import java.util.List;
 import fr.eni.jee.projet.bo.Article;
 import fr.eni.jee.projet.dal.ArticlesDAO;
 import fr.eni.jee.projet.dal.DALException;
+import fr.eni.jee.projet.dal.DAOFactory;
 
 public class ArticleManager {
 
 	private ArticlesDAO articleDAO;
 	
+	public ArticleManager() {
+		this.articleDAO = DAOFactory.getArticleDAO();
+	}
 
 	public void validerArticle (Article a) throws BLLException {
 		if (a.getNom_article() == null) {

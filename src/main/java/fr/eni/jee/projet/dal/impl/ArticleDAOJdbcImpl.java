@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.jee.projet.bo.Article;
+import fr.eni.jee.projet.bo.Categorie;
 import fr.eni.jee.projet.dal.ArticlesDAO;
 import fr.eni.jee.projet.dal.ConnectionProvider;
 import fr.eni.jee.projet.dal.DALException;
@@ -20,7 +21,7 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 
 	private final static String SQL_INSERT_ARTICLE = "insert into ARTICLES_VENDUS (no_articles, nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente, image) "
 													+ "values (no_article=?, nom_article=?, description=?, date_debut_enchere=?, date_fin_enchere=?, prix_inital=?, prix_vente = ?, no_utilisateur=?, no_categorie=?, etat_vente=? image=?);";
-	private final static String SQL_SELECT_ALL_ARTICLE = "select * from ARTICLES_VENDUS;";
+	private final static String SQL_SELECT_ALL_ARTICLE = "SELECT * FROM ARTICLES_VENDUS;";
 	private final static String SQL_UPDATE_ETAT_ARTICLE = "update ARTICLES_VENDUS set etat_vente=? where no_article=?;";
 	private final static String SQL_DELETE_ARTICLE = "delete from ARTICLES_VENDUS where no_article=?;";
 	
@@ -53,37 +54,36 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 	
 	public List<Article> selectAllArticle() throws DALException {
 		// creation d'une liste pour contenir le resultat
-		List<Article> articles = new ArrayList<Article>();
-		// creation d'un token
-		Article article;
+		List<Article> listeArticle = new ArrayList<>();
 		try (Connection connection = ConnectionProvider.getPoolConnexion()) {
-			// statement classique car pas de choix precis on prend tous
-			Statement stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery(SQL_SELECT_ALL_ARTICLE);
+
+			// Je lance ma requete SQL de selection
+			PreparedStatement pSt = connection.prepareStatement(SQL_SELECT_ALL_ARTICLE);
+			
+			ResultSet rs = pSt.executeQuery();
 			// boucle while pour implementer la liste et y mettre toutes nos valeurs
 			while (rs.next()) {
-				article = new Article(
-					rs.getInt("no_article"),
-					rs.getString("no_article"),
-					rs.getString("description"),
-					rs.getDate("date_debut_enchere"),
-					rs.getDate("date_fin_enchere"),
-					rs.getInt("prix_initial"),
-					rs.getInt("prix_vente"),
-					rs.getInt("no_utilisateur"),
-					rs.getInt("no_categorie"),
-					rs.getString("etat_vente"),
-					rs.getString("image")
-				);
-				articles.add(article);
+				int no_article = rs.getInt("no_article");
+				String nom_article = rs.getString("nom_article");
+				String description = rs.getString("description");
+				Date date_debut_enchere = rs.getDate("date_debut_enchere");
+				Date date_fin_enchere = rs.getDate("date_fin_enchere");
+				int prix_initial = rs.getInt("prix_initial");
+				int prix_vente = rs.getInt("prix_vente");
+				int no_utilisateur = rs.getInt("no_utilisateur");
+				int no_categorie = rs.getInt("no_categorie");
+				String etat_vente = rs.getString("etat_vente");
+				String image = rs.getString("image");
+				
+				Article article = new Article(no_article, nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente, image);
+				listeArticle.add(article);
 			}			
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DALException("erreur SQL_SELECT_ALL_ARTICLE");
 		}
 		// return de la list d'article
-		return articles;
+		return listeArticle;
 	}
 	
 	
