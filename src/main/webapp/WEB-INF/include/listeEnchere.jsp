@@ -19,7 +19,7 @@
 	
 	 -->
 	<c:if test="${!empty sessionScope.utilisateur}"> <!-- si on trouve une session on affiche les href des pages disponible comme utilisateur connecter -->
-		<a href="${pageContext.request.contextPath}/ServeltEnchere">Encheres</a>  <a href="${pageContext.request.contextPath}/ServletVendreArticle">Vendre un article</a>  <a href="${pageContext.request.contextPath}/ServletMonProfil">Mon profil</a>  <a href="${pageContext.request.contextPath}/ServletSeConnecter">Deconnexion</a><br /><br /> 
+		<a href="${pageContext.request.contextPath}/ServeltListeDesEncheres">Encheres</a>  <a href="${pageContext.request.contextPath}/ServletVendreUnArticle">Vendre un article</a>  <a href="${pageContext.request.contextPath}/ServletAfficherUnProfil">Mon profil</a>  <a href="${pageContext.request.contextPath}/ServletSeConnecter">Deconnexion</a><br /><br /> 
 		Bonjour : ${utilisateur.nom} ${utilisateur.prenom}
 	</c:if>
 	<c:if test="${empty sessionScope.utilisateur}"> <!-- si aucune session trouve on propose a l'utilisateur les href d'inscription ou de connexion -->
