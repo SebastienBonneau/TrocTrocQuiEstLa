@@ -44,20 +44,28 @@ public class ServletSinscrire extends HttpServlet {
 		String confirmation= request.getParameter("confirmation");
 		
 		
-		if(motDePasse.equals(confirmation)) {
-		
-			// 2 - On appelle la couche BLL avec ces parametres
-			try {
+		try {
+			if (utilisateurManager.verifierPseudo(pseudo) == true ) {
 				
-				this.utilisateurManager.inscripionUtilsateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
-			} catch (BLLException e) {
-				e.printStackTrace();
-			}
-		}
-			request.getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response); // une erreur est survenu
-		
 
+				// 2 - On appelle la couche BLL avec ces parametres
+				try {
+					
+					this.utilisateurManager.inscripionUtilsateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
+				} catch (BLLException e) {
+					e.printStackTrace();
+				}
+			}
+		} catch (BLLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			request.setAttribute("erreurPseudo", "Pseudo déjà utilisé!"); // message d'erreur en cas d'identifiant ou de mot de passe incorrect
+		}
+			
+			request.getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response); // une erreur est survenu
+			
 	}
+	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

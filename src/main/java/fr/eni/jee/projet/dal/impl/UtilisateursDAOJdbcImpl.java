@@ -16,7 +16,9 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	private final static String SQL_SELECT_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE (pseudo=? OR email=?) AND mot_de_passe=?;";
 	private final String SQL_INSERT_PROFIL = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, "
 			+ "email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) values (?, ?, ?, ?, ?, ?, ?, ?, ?, 100, 0);";
-
+	private static final String SQL_VERIFICATION_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?;";
+	
+	
 	@Override
 	public Utilisateur selectUtilisateur(String utilisateur, String motDePasse) throws DALException {
 		
@@ -86,6 +88,34 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
             throw new DALException("une erreur est survenu sur la BDD. Note Technique : " + e.getMessage());
         }
     }	
+	// Vérifier que le pseudo ne soit pas déja utilisé
+		public boolean verificationPseudo(String pseudo) throws DALException {
+			
+			boolean i = false;
+			
+			try (Connection connection = ConnectionProvider.getPoolConnexion()) {
+				
+				PreparedStatement pSt = connection.prepareStatement(SQL_VERIFICATION_PSEUDO);
+				
+				pSt.setString(1, pseudo);
+				
+				ResultSet rs = pSt.executeQuery();
+				
+			if (rs.next()){
+				
+				System.out.println("Ce pseudo est déjà utilisé.");
+			}else {
+				
+				i = true;
+			}
+			}catch (SQLException e) {
+				e.printStackTrace(); //je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
+				throw new DALException("une erreur est survenu sur la BDD. Note Technique : " + e.getMessage());
+			}
+			return i;
+		}
+	
+	
 	
 }
 
