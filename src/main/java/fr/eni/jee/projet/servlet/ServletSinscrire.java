@@ -47,7 +47,10 @@ public class ServletSinscrire extends HttpServlet {
 			
 			// 2 - On appelle la couche BLL avec ces parametres
 			this.utilisateurManager.inscripionUtilsateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
+			 request.getRequestDispatcher("/accueil").forward(request, response); 
 			
+<<<<<<< HEAD
+=======
 			verifPseudo = utilisateurManager.verifierPseudo(pseudo);
 			//verifEMail = utilisateurManager.verifierEMail(email);
 			//verifMotDePasse = utilisateurManager.verifierMotDePasse(motDePasse);
@@ -58,11 +61,11 @@ public class ServletSinscrire extends HttpServlet {
 				request.setAttribute("erreurPseudo", "Pseudo déjà utilisé!"); // message d'erreur en cas d'identifiant ou de mot de passe incorrect
 				request.getRequestDispatcher("/WEB-INF/Sinscrire.jsp").forward(request, response); // une erreur est survenu
 			}
+>>>>>>> branch 'master' of https://github.com/SebastienBonneau/TrocTrocQuiEstLa.git
 		} catch (BLLException e) {
 			e.printStackTrace();
-			request.setAttribute("erreurPseudo", "une erreur est survenu"); // message d'erreur en cas d'identifiant ou de mot de passe incorrect
+			request.setAttribute("erreurPseudo", e.getMessage()); // message d'erreur en cas d'identifiant ou de mot de passe incorrect
 			request.getRequestDispatcher("/WEB-INF/Sinscrire.jsp").forward(request, response); // une erreur est survenu
-	
 		}
 			
 	}
