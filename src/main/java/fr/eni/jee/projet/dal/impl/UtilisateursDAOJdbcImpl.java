@@ -85,38 +85,21 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
             }
         }catch (SQLException e) {
             e.printStackTrace(); //je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
-            throw new DALException("une erreur est survenu sur la BDD. Note Technique : " + e.getMessage());
+    		if (e.getMessage().contains("utilisateurs_pseudo_uq")) {
+				throw new DALException("Pseudo déja utilisé ");
+			}
+    		if (e.getMessage().contains("utilisateurs_email_uq")) {
+				throw new DALException("Email déja utilisé ");
+			}
+			
+			throw new DALException("une erreur est survenu sur la BDD. Note Technique : " + e.getMessage());
+			
         }
     }	
-	// Vérifier que le pseudo ne soit pas déja utilisé
-		public boolean verificationPseudo(String pseudo) throws DALException {
-			
-			boolean i = false;
-			
-			try (Connection connection = ConnectionProvider.getPoolConnexion()) {
-				
-				PreparedStatement pSt = connection.prepareStatement(SQL_VERIFICATION_PSEUDO);
-				
-				pSt.setString(1, pseudo);
-				
-				ResultSet rs = pSt.executeQuery();
-				
-			if (rs.next()){
-				
-				System.out.println("Ce pseudo est déjà utilisé.");
-			}else {
-				
-				i = true;
-			}
-			}catch (SQLException e) {
-				e.printStackTrace(); //je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
-				throw new DALException("une erreur est survenu sur la BDD. Note Technique : " + e.getMessage());
-			}
-			return i;
-		}
-	
-	
 	
 }
+	
+	
+	
 
 

@@ -30,6 +30,11 @@ public class UtilisateurManager {
 	public void inscripionUtilsateur(String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse) throws BLLException {
 		
 		try {
+			//validation du telephone
+			
+			//validation de la confirmation du mot de passe
+			
+			
 			Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, 0, false);
 			utilisateursDAO.insertUtilsateur(user);
 		} catch (DALException e) {
@@ -38,18 +43,6 @@ public class UtilisateurManager {
 		}
 	}
 	
-	public boolean verifierPseudo(String pseudo) throws BLLException {
-		
-		 boolean i = false;
-		 try {
-			i = this.utilisateursDAO.verificationPseudo(pseudo);
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new BLLException(e.getMessage());
-		}
-		return i;
-	}
 	
 	
 }
