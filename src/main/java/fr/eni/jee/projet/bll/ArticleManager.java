@@ -1,5 +1,6 @@
 package fr.eni.jee.projet.bll;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import fr.eni.jee.projet.bo.Article;
@@ -80,6 +81,19 @@ public class ArticleManager {
 		} catch (DALException e) {
 			throw new BLLException("Erreur m�thode updateEtatArticle" + e.getMessage());
 		}
+	}
+
+	public void ajouterArticle(int no_article, String nom_article, String description, LocalDate date_debut_enchere,
+			LocalDate date_fin_enchere, int prix_initial, int prix_vente, int no_utilisateur, int no_categorie,
+			String etat_vente, String image) {
+			Article article = new Article(no_article, nom_article,description, date_debut_enchere, date_fin_enchere, etat_vente, prix_initial, prix_vente, no_utilisateur, no_categorie);
+		
+	}
+
+	public void ajouterArticle(String nom_article, String description, LocalDate date_debut_enchere,
+			LocalDate date_fin_enchere, int prix_initial, int no_categorie, String etat_vente) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
