@@ -6,13 +6,10 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.jee.projet.bo.Article;
-import fr.eni.jee.projet.bo.Categorie;
 import fr.eni.jee.projet.dal.ArticlesDAO;
 import fr.eni.jee.projet.dal.ConnectionProvider;
 import fr.eni.jee.projet.dal.DALException;
@@ -25,9 +22,9 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 	private final static String SQL_SELECT_ALL_ARTICLE = "SELECT * FROM ARTICLES_VENDUS;";
 	private final static String SQL_UPDATE_ETAT_ARTICLE = "update ARTICLES_VENDUS set etat_vente=? where no_article=?;";
 	private final static String SQL_DELETE_ARTICLE = "delete from ARTICLES_VENDUS where no_article=?;";
-	private final static String SQL_SELECT_ETAT_EC = "SELECT * FROM ARTICLES_VENDUS WHERE etat_vente = EC ;";
-	private final static String SQL_SELECT_ETAT_CR = "SELECT * FROM ARTICLES_VENDUS WHERE etat_vente = CR ;";
-	private final static String SQL_SELECT_ETAT_VD = "SELECT * FROM ARTICLES_VENDUS WHERE etat_vente = VD ;";
+	private final static String SQL_SELECT_ETAT_EC = "SELECT * FROM ARTICLES_VENDUS WHERE etat_vente = 'EC' ;";
+	private final static String SQL_SELECT_ETAT_CR = "SELECT * FROM ARTICLES_VENDUS WHERE etat_vente = 'CR' ;";
+	private final static String SQL_SELECT_ETAT_VD = "SELECT * FROM ARTICLES_VENDUS WHERE etat_vente = 'VD' ;";
 	
 	
 	

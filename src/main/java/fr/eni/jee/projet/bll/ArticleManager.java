@@ -83,7 +83,41 @@ public class ArticleManager {
 		}
 	}
 	
-	
+	public List<Article> listeEnchereEC() throws BLLException {
+		
+		List<Article> listeEnchere = null;
+		try {
+			listeEnchere = this.articleDAO.selectEnchereEC();
+		} catch (DALException e) {
+			e.printStackTrace();
+			throw new BLLException(e.getMessage());
+		}
+		return listeEnchere;
+	}
+
+	public List<Article> listeEnchereCR() throws BLLException {
+		
+		List<Article> listeEnchere = null;
+		try {
+			listeEnchere = this.articleDAO.selectEnchereCR();
+		} catch (DALException e) {
+			e.printStackTrace();
+			throw new BLLException(e.getMessage());
+		}
+		return listeEnchere;
+	}
+
+	public List<Article> listeEnchereVD() throws BLLException {
+		
+		List<Article> listeEnchere = null;
+		try {
+			listeEnchere = this.articleDAO.selectEnchereVD();
+		} catch (DALException e) {
+			e.printStackTrace();
+			throw new BLLException(e.getMessage());
+		}
+		return listeEnchere;
+	}
 
 	public void ajouterArticle(int no_article, String nom_article, String description, LocalDate date_debut_enchere,
 			LocalDate date_fin_enchere, int prix_initial, int prix_vente, int no_utilisateur, int no_categorie,

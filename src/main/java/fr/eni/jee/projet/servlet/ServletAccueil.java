@@ -44,7 +44,7 @@ public class ServletAccueil extends HttpServlet {
 			List<Categorie> listeCategorie = this.categorieManager.selectCategorie();
 			request.setAttribute("listeCategorie", listeCategorie);
 			
-			List<Article> listeArticle = this.articleManager.selectEnchere();
+			List<Article> listeArticle = this.articleManager.listeEnchereEC();
 			request.setAttribute("listeArticle", listeArticle);
 			
 	        request.getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response); // une erreur est survenu
