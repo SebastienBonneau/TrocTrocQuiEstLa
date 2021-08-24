@@ -30,10 +30,10 @@ public class ArticleManager {
 		if (a.getDate_fin_enchere() == null) {
 			throw new BLLException("Erreur date fin ench�re");
 		}
-		if (a.getNo_utilisateur() == null) {
+		if (a.getNo_utilisateur() < 0) {
 			throw new BLLException("Erreur n� Utilisateur");
 		}
-		if (a.getNo_categorie() == null) {
+		if (a.getNo_categorie() < 0) {
 			throw new BLLException("Erreur n� Cat�gorie");
 		}
 		if (a.getEtat_vente() == null) {
@@ -121,7 +121,7 @@ public class ArticleManager {
 	}
 
 	public void ajouterArticle(String nom_article, String description, LocalDateTime date_debut_enchere, LocalDateTime date_fin_enchere, 
-			int prix_initial, Categorie no_categorie, String image) throws BLLException {
+			int prix_initial, int no_categorie, String image) throws BLLException {
 			Article article = new Article(nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, no_categorie, image);
 			try {
 				articleDAO.ajouterArticle(article);

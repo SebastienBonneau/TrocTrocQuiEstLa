@@ -4,14 +4,12 @@ import java.time.LocalDateTime;
 
 public class Article {
 
-	private int  no_article, prix_initial, prix_vente;
+	private int  no_article, no_utilisateur, no_categorie, prix_initial, prix_vente;
 	private String nom_article, description, etat_vente, image;
 	private LocalDateTime date_debut_enchere, date_fin_enchere;
-	private Utilisateur no_utilisateur;
-	private Categorie no_categorie;
 
 	public Article(String nom_article, String description, LocalDateTime date_debut_enchere, LocalDateTime date_fin_enchere, int prix_initial, int prix_vente,
-			Utilisateur no_utilisateur, Categorie no_categorie, String etat_vente, String image) {
+			int no_utilisateur, int no_categorie, String etat_vente, String image) {
 		super();
 		this.nom_article = nom_article;
 		this.description = description;
@@ -28,7 +26,7 @@ public class Article {
 	
 
 	public Article(int no_article, String nom_article, String description, LocalDateTime date_debut_enchere, LocalDateTime date_fin_enchere, int prix_initial, int prix_vente,
-			Utilisateur no_utilisateur, Categorie no_categorie, String etat_vente, String image) {
+			int no_utilisateur, int no_categorie, String etat_vente, String image) {
 		this(nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente, image);
 		this.no_article = no_article;
 	}
@@ -36,7 +34,7 @@ public class Article {
 	
 
 	public Article(String nom_article, String description, LocalDateTime date_debut_enchere, LocalDateTime date_fin_enchere,
-			 int prix_initial, Categorie no_categorie, String image) {
+			 int prix_initial, int no_categorie, String image) {
 		super();
 		this.prix_initial = prix_initial;
 		this.nom_article = nom_article;
@@ -66,11 +64,11 @@ public class Article {
 		return prix_vente;
 	}
 
-	public Utilisateur getNo_utilisateur() {
+	public int getNo_utilisateur() {
 		return no_utilisateur;
 	}
 
-	public Categorie getNo_categorie() {
+	public int getNo_categorie() {
 		return no_categorie;
 	}
 

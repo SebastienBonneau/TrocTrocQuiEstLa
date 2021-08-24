@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,36 +16,29 @@
 	</c:if> <br /><br />
 
 <form method="post" action="${pageContext.request.contextPath}/ServletVendreUnArticle">
-		<label for="no_article"> N° article : </label>
-		<input type="text" name="no_article" id="no_article" required="required" />
-	<br />
-		
+	
 		<label for="nomArticle"> Nom de votre article : </label>
 		<input type="text" name="nomArticle" id="nomArticle" required="required" />
 	<br />
 	<br />
 		<label for="description"> Description de l'article : </label>
-		<input type="text" name="description" id="description" required="required" />
+		<textarea name="description" id="description" required="required" rows="4" cols="50"/></textarea>
 	<br />
 	<br />
 		<label for="date_debut"> date de début de l'enchère : </label>
-		<input type="date" name="date_debut" id="date_debut" required="required" />
+		<input type="datetime-local" name="date_debut" id="date_debut" required="required" />
 	<br />
 	<br />
 		<label for="date_fin"> date de fin de l'enchère : </label>
-		<input type="date" name="date_fin" id="date_fin" required="required" />
+		<input type="datetime-local" name="date_fin" id="date_fin" required="required" />
 	<br />
 	<br />
 		<label for="prixInitial"> Prix de base de l'enchère : </label>
-		<input type="int" name="prixInitial" id="prixInitial" required="required"/>
+		<input type="number" name="prixInitial" id="prixInitial" required="required"/>
 	<br />
 	<br />
 		<label for="categorie"> Catégorie de l'article : </label>
-		<input type="int" name="categorie" id="categorie" required="required" />
-	<br />
-	<br />
-		<label for="etat"> État de la vente : </label>
-		<input type="text" name="etat" id="etat" required="required" />
+		<input type="number" name="categorie" id="categorie" required="required" />
 	<br />
 	
 	<button type="submit">Créer</button>
