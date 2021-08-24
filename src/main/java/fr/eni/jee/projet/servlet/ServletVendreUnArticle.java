@@ -47,13 +47,13 @@ public class ServletVendreUnArticle extends HttpServlet {
 		//String image = request.getParameter("image");
 		
 		try {
-			this.articleManager.ajouterArticle(no_article ,nom_article, description, date_debut_enchere,date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente, image);
+			this.articleManager.addArticle(no_article ,nom_article, description, date_debut_enchere,date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente, image);
 		} catch (BLLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
-		request.getRequestDispatcher("/WEB-INF/vendreArticle.jsp").forward(request,response);
+		request.getRequestDispatcher("/accueil").forward(request,response);
 	}
 	
 }
