@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.jee.projet.bll.ArticleManager;
 import fr.eni.jee.projet.bll.BLLException;
+import fr.eni.jee.projet.bo.Categorie;
 /**
  * Servlet implementation class ServletVendreArticle
  */
@@ -33,27 +34,26 @@ public class ServletVendreUnArticle extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int no_article = 6;
-		String nom_article = request.getParameter("nom_article");
+		String nom_article = request.getParameter("nomArticle");
 		String description = request.getParameter("description");
 		LocalDateTime date_debut_enchere = LocalDateTime.parse(request.getParameter("date_debut_enchere"));
 		LocalDateTime date_fin_enchere = LocalDateTime.parse(request.getParameter("date_fin_enchere"));
 		int prix_initial = Integer.parseInt(request.getParameter("prix_initial"));
-		int prix_vente = Integer.parseInt(request.getParameter("prix_vente"));
-		int no_utilisateur = 5;
-		int no_categorie = Integer.parseInt(request.getParameter("no_categorie"));
-		String etat_vente= request.getParameter("etat_vente");
-		String image = "=";
+		//Categorie no_categorie = (request.getParameter("categorie"));
+		String image = request.getParameter("image");
+		String no_categorie_session = request.getParameter("categorie");
+		Categorie no_categorie = (Categorie) request.getSession().getAttribute(no_categorie_session);
+		
 		//String image = request.getParameter("image");
 		
 		try {
-			this.articleManager.ajouterArticle(no_article ,nom_article, description, date_debut_enchere,date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente, image);
+			this.articleManager.ajouterArticle(nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, no_categorie, image);
 		} catch (BLLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
-		request.getRequestDispatcher("/WEB-IF/acceuil.jsp").forward(request,response);
+		request.getRequestDispatcher("/accueil").forward(request,response);
 	}
 	
 }

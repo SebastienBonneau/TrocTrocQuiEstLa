@@ -22,7 +22,7 @@ public class Utilisateur {
 		this.administrateur = administrateur;
 	}
 	
-	public Utilisateur(int	no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue,
+	public Utilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String code_postal, String ville, String mot_de_passe, int credit, boolean administrateur) {
 		this(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur);
 		this.no_utilisateur = no_utilisateur;
