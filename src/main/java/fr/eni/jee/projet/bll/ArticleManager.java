@@ -82,6 +82,8 @@ public class ArticleManager {
 			throw new BLLException("Erreur m�thode updateEtatArticle" + e.getMessage());
 		}
 	}
+	
+	
 
 	public void ajouterArticle(int no_article, String nom_article, String description, LocalDate date_debut_enchere,
 			LocalDate date_fin_enchere, int prix_initial, int prix_vente, int no_utilisateur, int no_categorie,
