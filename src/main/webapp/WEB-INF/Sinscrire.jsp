@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,9 +12,9 @@
 <h1>Mon profil</h1>
 
 
-<c:if test="${!empty erreurPseudo}"> <!-- si une erreur d'identifiant ou de mot de passe est detecter on affiche le message personalisee pour ce cas -->
-		<span> ${erreurPseudo}</span>
-	</c:if> <br /><br />
+	<c:if test="${!empty erreurPseudo}"> <!-- si une erreur De pseudo existant est detecter on affiche le message personalisee pour ce cas -->
+			<span> ${erreurPseudo}</span>
+		</c:if> <br /><br />
 
 <form method="post" action="${pageContext.request.contextPath}/ServletSinscrire">
 		<label for="pseudo"> Pseudo : </label>
@@ -24,7 +25,7 @@
 		<input type="text" name="prenom" id="prenom" required="required" />
 	<br />
 	<br />
-		<label for="telephone"> TÃ©lÃ©phone : </label>
+		<label for="telephone"> Téléphone : </label>
 		<input type="tel" name="telephone" id="telephone" required="required" />
 	<br />
 	<br />
@@ -57,7 +58,7 @@
 		<br />
 	<br />
 	<br />
-	<button type="submit">CrÃ©er</button>
+	<button type="submit">Créer</button>
 </form>
 		<br />
 		<br />

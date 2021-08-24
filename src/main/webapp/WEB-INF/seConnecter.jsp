@@ -9,9 +9,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" />
 </head>
 <body>
+
 <div id="fond" >
 	<h1> TrocTroc Qui est la ?</h1>						
 </div>	
+
 	<c:if test="${!empty erreur}"> <!-- si une erreur d'identifiant ou de mot de passe est detecter on affiche le message personalisee pour ce cas -->
 		<span> ${erreur}</span>
 	</c:if> <br /><br />
