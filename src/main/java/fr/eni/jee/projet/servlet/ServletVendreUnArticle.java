@@ -1,7 +1,7 @@
 package fr.eni.jee.projet.servlet;
 
 import java.io.IOException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,8 +36,8 @@ public class ServletVendreUnArticle extends HttpServlet {
 		int no_article = 6;
 		String nom_article = request.getParameter("nom_article");
 		String description = request.getParameter("description");
-		LocalDate date_debut_enchere = LocalDate.parse(request.getParameter("date_debut_enchere"));
-		LocalDate date_fin_enchere = LocalDate.parse(request.getParameter("date_fin_enchere"));
+		LocalDateTime date_debut_enchere = LocalDateTime.parse(request.getParameter("date_debut_enchere"));
+		LocalDateTime date_fin_enchere = LocalDateTime.parse(request.getParameter("date_fin_enchere"));
 		int prix_initial = Integer.parseInt(request.getParameter("prix_initial"));
 		int prix_vente = Integer.parseInt(request.getParameter("prix_vente"));
 		int no_utilisateur = 5;

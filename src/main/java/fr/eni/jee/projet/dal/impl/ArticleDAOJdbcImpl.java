@@ -2,10 +2,11 @@ package fr.eni.jee.projet.dal.impl;
 
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,16 +37,16 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 			PreparedStatement pSt = connection.prepareStatement(SQL_INSERT_ARTICLE);
 			
 			// l'API JDBC Utilise java.sql.Date et java.sql.Time pour ses preparedStatements
-			// On a utilisé de bnotr côté LocalDate
-			// => du coup : on va devoir faire une CONVERSION avec Date.valueOf()
-			Date sqlDate_debut_enchere = Date.valueOf(article.getDate_debut_enchere());
-			Date sqlDate_fin_enchere = Date.valueOf(article.getDate_fin_enchere());
+			// On a utilisé de bnotr côté LocalDateTime
+			// => du coup : on va devoir faire une CONVERSION avec Timestamp.valueOf()
+			Timestamp sqlDate_debut_enchere = Timestamp.valueOf(article.getDate_debut_enchere());
+			Timestamp sqlDate_fin_enchere = Timestamp.valueOf(article.getDate_fin_enchere());
 			
 			pSt.setInt(1, article.getNo_article() );
 			pSt.setString(2, article.getNom_article() );
 			pSt.setString(3, article.getDescription() );
-			pSt.setDate(4, sqlDate_debut_enchere );
-			pSt.setDate(5, sqlDate_fin_enchere );
+			pSt.setTimestamp(4, sqlDate_debut_enchere );
+			pSt.setTimestamp(5, sqlDate_fin_enchere );
 			pSt.setInt(6, article.getPrix_initial() );
 			pSt.setInt(7, article.getPrix_vente() );
 			pSt.setInt(8, article.getNo_utilisateur() );
@@ -75,8 +76,10 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 					rs.getInt("no_article"),
 					rs.getString("nom_article"),
 					rs.getString("description"),
-					rs.getDate("date_debut_enchere").toLocalDate(),
-					rs.getDate("date_fin_enchere").toLocalDate(),
+					LocalDateTime.of((rs.getDate("date_debut_enchere").toLocalDate()),
+							rs.getTime("date_debut_enchere").toLocalTime()),
+					LocalDateTime.of((rs.getDate("date_fin_enchere").toLocalDate()),
+							rs.getTime("date_fin_enchere").toLocalTime()),
 					rs.getInt("prix_initial"),
 					rs.getInt("prix_vente"),
 					rs.getInt("no_utilisateur"),
@@ -141,8 +144,10 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 					rs.getInt("no_article"),
 					rs.getString("nom_article"),
 					rs.getString("description"),
-					rs.getDate("date_debut_enchere").toLocalDate(),
-					rs.getDate("date_fin_enchere").toLocalDate(),
+					LocalDateTime.of((rs.getDate("date_debut_enchere").toLocalDate()),
+							rs.getTime("date_debut_enchere").toLocalTime()),
+					LocalDateTime.of((rs.getDate("date_fin_enchere").toLocalDate()),
+							rs.getTime("date_fin_enchere").toLocalTime()),
 					rs.getInt("prix_initial"),
 					rs.getInt("prix_vente"),
 					rs.getInt("no_utilisateur"),
@@ -176,8 +181,10 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 					rs.getInt("no_article"),
 					rs.getString("nom_article"),
 					rs.getString("description"),
-					rs.getDate("date_debut_enchere").toLocalDate(),
-					rs.getDate("date_fin_enchere").toLocalDate(),
+					LocalDateTime.of((rs.getDate("date_debut_enchere").toLocalDate()),
+							rs.getTime("date_debut_enchere").toLocalTime()),
+					LocalDateTime.of((rs.getDate("date_fin_enchere").toLocalDate()),
+							rs.getTime("date_fin_enchere").toLocalTime()),
 					rs.getInt("prix_initial"),
 					rs.getInt("prix_vente"),
 					rs.getInt("no_utilisateur"),
@@ -211,8 +218,10 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 					rs.getInt("no_article"),
 					rs.getString("nom_article"),
 					rs.getString("description"),
-					rs.getDate("date_debut_enchere").toLocalDate(),
-					rs.getDate("date_fin_enchere").toLocalDate(),
+					LocalDateTime.of((rs.getDate("date_debut_enchere").toLocalDate()),
+							rs.getTime("date_debut_enchere").toLocalTime()),
+					LocalDateTime.of((rs.getDate("date_fin_enchere").toLocalDate()),
+							rs.getTime("date_fin_enchere").toLocalTime()),
 					rs.getInt("prix_initial"),
 					rs.getInt("prix_vente"),
 					rs.getInt("no_utilisateur"),
