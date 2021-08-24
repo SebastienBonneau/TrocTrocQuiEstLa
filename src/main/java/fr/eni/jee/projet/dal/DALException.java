@@ -1,4 +1,4 @@
-package fr.eni.jee.projet.dal;
+                                                package fr.eni.jee.projet.dal;
 
 public class DALException extends Exception{
 

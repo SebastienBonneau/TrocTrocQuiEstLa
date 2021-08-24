@@ -46,11 +46,9 @@ public class ServletSinscrire extends HttpServlet {
 		
 		try {
 			if (utilisateurManager.verifierPseudo(pseudo) == true ) {
-				
-
 				// 2 - On appelle la couche BLL avec ces parametres
 				try {
-					
+
 					this.utilisateurManager.inscripionUtilsateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
 				} catch (BLLException e) {
 					e.printStackTrace();
@@ -60,9 +58,9 @@ public class ServletSinscrire extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			request.setAttribute("erreurPseudo", "Pseudo déjà utilisé!"); // message d'erreur en cas d'identifiant ou de mot de passe incorrect
+			request.getRequestDispatcher("/WEB-INF/Sinscrire.jsp").forward(request, response); // une erreur est survenu
+			e.printStackTrace();	
 		}
-			
-			request.getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response); // une erreur est survenu
 			
 	}
 	
