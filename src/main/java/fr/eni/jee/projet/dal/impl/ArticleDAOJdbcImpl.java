@@ -17,8 +17,8 @@ import fr.eni.jee.projet.dal.DALException;
 
 public class ArticleDAOJdbcImpl implements ArticlesDAO {
 
-	private final static String SQL_INSERT_ARTICLE = "insert into ARTICLES_VENDUS (no_article, nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente, image) "
-													+ "values (no_article=?, nom_article=?, description=?, date_debut_enchere=?, date_fin_enchere=?, prix_inital=?, prix_vente = ?, no_utilisateur=?, no_categorie=?, etat_vente=? image=?);";
+	private final static String SQL_INSERT_ARTICLE = "insert into ARTICLES_VENDUS (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente, image) "
+													+ "values (?,?,?,?,?,?,?,?,?,?);";
 	private final static String SQL_SELECT_ALL_ARTICLE = "SELECT * FROM ARTICLES_VENDUS;";
 	private final static String SQL_UPDATE_ETAT_ARTICLE = "update ARTICLES_VENDUS set etat_vente=? where no_article=?;";
 	private final static String SQL_DELETE_ARTICLE = "delete from ARTICLES_VENDUS where no_article=?;";
@@ -41,18 +41,34 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 			Date sqlDate_debut_enchere = Date.valueOf(article.getDate_debut_enchere());
 			Date sqlDate_fin_enchere = Date.valueOf(article.getDate_fin_enchere());
 			
+			if (article.getImage() != null){
+				pSt.setInt(1, article.getNo_article() );
+				pSt.setString(2, article.getNom_article() );
+				pSt.setString(3, article.getDescription() );
+				pSt.setDate(4, sqlDate_debut_enchere );
+				pSt.setDate(5, sqlDate_fin_enchere );
+				pSt.setInt(6, article.getPrix_initial() );
+				pSt.setInt(7, article.getPrix_vente() );
+				pSt.setInt(8, article.getNo_utilisateur() );
+				pSt.setInt(9, article.getNo_categorie() );
+				pSt.setString(10, article.getEtat_vente() );
+				pSt.setString(11, article.getImage());
+				pSt.executeUpdate();
+			} else {
 			pSt.setInt(1, article.getNo_article() );
 			pSt.setString(2, article.getNom_article() );
 			pSt.setString(3, article.getDescription() );
 			pSt.setDate(4, sqlDate_debut_enchere );
 			pSt.setDate(5, sqlDate_fin_enchere );
 			pSt.setInt(6, article.getPrix_initial() );
-			pSt.setInt(7, article.getPrix_vente() );
+			pSt.setInt(7, 0);
 			pSt.setInt(8, article.getNo_utilisateur() );
 			pSt.setInt(9, article.getNo_categorie() );
 			pSt.setString(10, article.getEtat_vente() );
-			pSt.setString(11, article.getImage());
+			pSt.setString(11, null);
+
 			pSt.executeUpdate();
+			}
 		} catch (SQLException e) {
 			e.getMessage();
 			throw new DALException("errreur SQL_INSERT_ARTICLE");

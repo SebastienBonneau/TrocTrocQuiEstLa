@@ -133,10 +133,10 @@ public class ArticleManager {
 			}
 	}
 
-	public void addArticle(String nom_article, String description, LocalDate date_debut_enchere,
-			LocalDate date_fin_enchere, int prix_initial, int no_categorie, String etat_vente) throws BLLException {
+	public void addArticle(int no_article, String nom_article, String description, LocalDate date_debut_enchere,
+			LocalDate date_fin_enchere, int prix_initial, int no_utilisateur, int no_categorie, String etat_vente) throws BLLException {
 		
-			Article article = new Article(nom_article,description, date_debut_enchere, date_fin_enchere, prix_initial,no_categorie, etat_vente);
+			Article article = new Article(no_article, nom_article,description, date_debut_enchere, date_fin_enchere, prix_initial, no_utilisateur, no_categorie, etat_vente);
 			try {
 				
 				articleDAO.ajouterArticle(article);

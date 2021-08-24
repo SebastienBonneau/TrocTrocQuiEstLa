@@ -15,6 +15,10 @@
 	</c:if> <br /><br />
 
 <form method="post" action="${pageContext.request.contextPath}/ServletVendreUnArticle">
+		<label for="no_article"> N° article : </label>
+		<input type="text" name="no_article" id="no_article" required="required" />
+	<br />
+		
 		<label for="nomArticle"> Nom de votre article : </label>
 		<input type="text" name="nomArticle" id="nomArticle" required="required" />
 	<br />
@@ -40,7 +44,7 @@
 	<br />
 	<br />
 		<label for="etat"> État de la vente : </label>
-		<input type="text" name="etat" id="etat" required="required" autofocus="autofocus" />
+		<input type="text" name="etat" id="etat" required="required" />
 	<br />
 	
 	<button type="submit">Créer</button>

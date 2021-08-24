@@ -24,19 +24,22 @@ public class Article {
 		this.image = image;
 	}
 
-	public Article(String nom_article, String description, LocalDate date_debut_enchere, LocalDate date_fin_enchere,
-			int prix_initial, int no_categorie, String etat_vente) {
+	public Article(int no_article, String nom_article, String description, LocalDate date_debut_enchere, LocalDate date_fin_enchere,
+			int prix_initial,int no_utilisateur, int no_categorie, String etat_vente) {
 		super();
-		
+		this.no_article = no_article;
 		this.nom_article = nom_article;
 		this.description = description;
 		this.date_debut_enchere = date_debut_enchere;
 		this.date_fin_enchere = date_fin_enchere;
 		this.prix_initial = prix_initial;
+		this.no_utilisateur = no_utilisateur;
 		this.no_categorie = no_categorie;
 		this.etat_vente = etat_vente;
-		// TODO Auto-generated constructor stub
+		
 	}
+
+	
 
 	public int getNo_article() {
 		return no_article;
