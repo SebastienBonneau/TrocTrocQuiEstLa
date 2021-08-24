@@ -81,5 +81,7 @@ public class ArticleManager {
 			throw new BLLException("Erreur m�thode updateEtatArticle" + e.getMessage());
 		}
 	}
+	
+	
 
 }
