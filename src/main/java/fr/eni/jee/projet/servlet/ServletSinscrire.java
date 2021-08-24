@@ -20,6 +20,7 @@ public class ServletSinscrire extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private UtilisateurManager utilisateurManager;
+	private boolean verifPseudo, verifEMail, verifMotDePasse;
 
 	public ServletSinscrire() {
 		super();
@@ -48,6 +49,19 @@ public class ServletSinscrire extends HttpServlet {
 			this.utilisateurManager.inscripionUtilsateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
 			 request.getRequestDispatcher("/accueil").forward(request, response); 
 			
+<<<<<<< HEAD
+=======
+			verifPseudo = utilisateurManager.verifierPseudo(pseudo);
+			//verifEMail = utilisateurManager.verifierEMail(email);
+			//verifMotDePasse = utilisateurManager.verifierMotDePasse(motDePasse);
+			
+			if (verifPseudo == false) {
+				 request.getRequestDispatcher("/accueil").forward(request, response); // une erreur est survenu
+			}else {
+				request.setAttribute("erreurPseudo", "Pseudo déjà utilisé!"); // message d'erreur en cas d'identifiant ou de mot de passe incorrect
+				request.getRequestDispatcher("/WEB-INF/Sinscrire.jsp").forward(request, response); // une erreur est survenu
+			}
+>>>>>>> branch 'master' of https://github.com/SebastienBonneau/TrocTrocQuiEstLa.git
 		} catch (BLLException e) {
 			e.printStackTrace();
 			request.setAttribute("erreurPseudo", e.getMessage()); // message d'erreur en cas d'identifiant ou de mot de passe incorrect
