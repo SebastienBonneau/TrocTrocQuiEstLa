@@ -61,7 +61,7 @@
 </form>
 		<br />
 		<br />
-<form method="post" action="${pageContext.request.contextPath }/ServletAccueil">
+<form method="get" action="${pageContext.request.contextPath }/accueil">
 	<button type="submit">Annuler</button>
 </form>
 		

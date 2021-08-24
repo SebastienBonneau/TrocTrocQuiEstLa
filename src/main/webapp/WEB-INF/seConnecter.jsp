@@ -44,7 +44,7 @@
 			
 	</form>
 
-	<form method="post" action="./ServletCreerUnCompte">
+	<form method="get" action="./ServletSinscrire">
 		<button type="submit">Creer un compte</button>
 	</form>
 
