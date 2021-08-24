@@ -33,8 +33,8 @@
 		<input type="datetime-local" name="date_fin" id="date_fin" required="required" />
 	<br />
 	<br />
-		<label for="prixInitial"> Prix de base de l'enchère : </label>
-		<input type="number" name="prixInitial" id="prixInitial" required="required"/>
+		<label for="prix_initial"> Prix de base de l'enchère : </label>
+		<input type="number" name="prix_initial" id="prix_initial" required="required"/>
 	<br />
 	<br />
 		<label for="categorie"> Catégorie de l'article : </label>

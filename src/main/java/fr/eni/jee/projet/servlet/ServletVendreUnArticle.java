@@ -34,12 +34,13 @@ public class ServletVendreUnArticle extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+		
+		
 		String nom_article = request.getParameter("nomArticle");
 		String description = request.getParameter("description");
-		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-		LocalDateTime date_debut_enchere = LocalDateTime.parse(request.getParameter("date_debut_enchere"), formatter);
-		LocalDateTime date_fin_enchere = LocalDateTime.parse(request.getParameter("date_fin_enchere"), formatter);
+		LocalDateTime date_debut_enchere = LocalDateTime.parse("date_debut_enchere", formatter);
+		LocalDateTime date_fin_enchere = LocalDateTime.parse("date_fin_enchere", formatter);
 		int prix_initial = Integer.parseInt(request.getParameter("prix_initial"));
 		//Categorie no_categorie = (request.getParameter("categorie"));
 		String image = request.getParameter("image");
