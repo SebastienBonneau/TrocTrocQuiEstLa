@@ -6,13 +6,10 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.jee.projet.bo.Article;
-import fr.eni.jee.projet.bo.Categorie;
 import fr.eni.jee.projet.dal.ArticlesDAO;
 import fr.eni.jee.projet.dal.ConnectionProvider;
 import fr.eni.jee.projet.dal.DALException;
