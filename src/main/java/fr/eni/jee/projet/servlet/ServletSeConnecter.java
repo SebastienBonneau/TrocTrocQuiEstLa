@@ -1,4 +1,4 @@
-	package fr.eni.jee.projet.servlet;
+package fr.eni.jee.projet.servlet;
 
 import java.io.IOException;
 

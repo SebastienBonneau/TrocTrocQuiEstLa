@@ -8,4 +8,6 @@ public interface UtilisateursDAO {
 
 	void insertUtilsateur(Utilisateur user)throws DALException;
 	
+	boolean verificationPseudo(String pseudo) throws DALException;
+	
 }

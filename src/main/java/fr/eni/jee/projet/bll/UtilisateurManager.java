@@ -38,6 +38,19 @@ public class UtilisateurManager {
 		}
 	}
 	
+	public boolean verifierPseudo(String pseudo) throws BLLException {
+		
+		 boolean i = false;
+		 try {
+			i = this.utilisateursDAO.verificationPseudo(pseudo);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new BLLException(e.getMessage());
+		}
+		return i;
+	}
+	
 	
 }
 

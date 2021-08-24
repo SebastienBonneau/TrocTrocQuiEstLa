@@ -16,15 +16,18 @@
 		<span> ${erreur}</span>
 	</c:if> <br /><br />
 	
+	
+	
 	<form method="post" action="${pageContext.request.contextPath}/ServletSeConnecter">
 	<br />
 	<br />
 	<br />
 	<br />
 	<br />
-	
+	<div class="identifiant">
 		<label for="identifiant"> Identifiant : </label>
 		<input type="text" name="identifiant" id="identifiant" />
+	</div>
 			<br />
 			<br />
 			<br />
@@ -32,7 +35,7 @@
 		<input type="password" name="motDePasse" id="motDePasse" />
 			<br />
 			<br />
-		<button type="submit" > Connexion </button>
+		<button type="submit" id="connexion" > Connexion </button>
 			<br />
 			<br />
 		<input type="checkbox" /> Se souvenir de moi
@@ -41,7 +44,7 @@
 			
 	</form>
 
-	<form method="post" action="./ServletCreerUnCompte">
+	<form method="get" action="./ServletSinscrire">
 		<button type="submit">Creer un compte</button>
 	</form>
 

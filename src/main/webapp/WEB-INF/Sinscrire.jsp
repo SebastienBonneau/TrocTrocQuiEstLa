@@ -10,6 +10,11 @@
 
 <h1>Mon profil</h1>
 
+
+<c:if test="${!empty erreurPseudo}"> <!-- si une erreur d'identifiant ou de mot de passe est detecter on affiche le message personalisee pour ce cas -->
+		<span> ${erreurPseudo}</span>
+	</c:if> <br /><br />
+
 <form method="post" action="${pageContext.request.contextPath}/ServletSinscrire">
 		<label for="pseudo"> Pseudo : </label>
 		<input type="text" name="pseudo" id="pseudo" required="required" />
@@ -56,7 +61,7 @@
 </form>
 		<br />
 		<br />
-<form method="post" action="${pageContext.request.contextPath }/ServletAccueil">
+<form method="get" action="${pageContext.request.contextPath }/accueil">
 	<button type="submit">Annuler</button>
 </form>
 		
