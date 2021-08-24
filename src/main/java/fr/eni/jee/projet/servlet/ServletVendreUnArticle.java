@@ -34,15 +34,15 @@ public class ServletVendreUnArticle extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int no_article = 6;
-		String nom_article = request.getParameter("nom_article");
+		String nom_article = request.getParameter("nomArticle");
 		String description = request.getParameter("description");
-		LocalDate date_debut_enchere = LocalDate.parse(request.getParameter("date_debut_enchere"));
-		LocalDate date_fin_enchere = LocalDate.parse(request.getParameter("date_fin_enchere"));
-		int prix_initial = Integer.parseInt(request.getParameter("prix_initial"));
-		int prix_vente = Integer.parseInt(request.getParameter("prix_vente"));
+		LocalDate date_debut_enchere = LocalDate.parse(request.getParameter("date_debut"));
+		LocalDate date_fin_enchere = LocalDate.parse(request.getParameter("date_fin"));
+		int prix_initial = Integer.parseInt(request.getParameter("prixInitial"));
+		int prix_vente = 12;
 		int no_utilisateur = 5;
-		int no_categorie = Integer.parseInt(request.getParameter("no_categorie"));
-		String etat_vente= request.getParameter("etat_vente");
+		int no_categorie = Integer.parseInt(request.getParameter("categorie"));
+		String etat_vente= request.getParameter("etat");
 		String image = "=";
 		//String image = request.getParameter("image");
 		
@@ -53,7 +53,7 @@ public class ServletVendreUnArticle extends HttpServlet {
 			e.printStackTrace();
 		}
 	
-		request.getRequestDispatcher("/WEB-IF/acceuil.jsp").forward(request,response);
+		request.getRequestDispatcher("/WEB-INF/vendreArticle.jsp").forward(request,response);
 	}
 	
 }
