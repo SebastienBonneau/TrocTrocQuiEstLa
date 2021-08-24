@@ -82,6 +82,40 @@ public class ArticleManager {
 		}
 	}
 	
-	
+	public List<Article> listeEnchereEC() throws BLLException {
+		
+		List<Article> listeEnchere = null;
+		try {
+			listeEnchere = this.articleDAO.selectEnchereEC();
+		} catch (DALException e) {
+			e.printStackTrace();
+			throw new BLLException(e.getMessage());
+		}
+		return listeEnchere;
+	}
+
+	public List<Article> listeEnchereCR() throws BLLException {
+		
+		List<Article> listeEnchere = null;
+		try {
+			listeEnchere = this.articleDAO.selectEnchereCR();
+		} catch (DALException e) {
+			e.printStackTrace();
+			throw new BLLException(e.getMessage());
+		}
+		return listeEnchere;
+	}
+
+	public List<Article> listeEnchereVD() throws BLLException {
+		
+		List<Article> listeEnchere = null;
+		try {
+			listeEnchere = this.articleDAO.selectEnchereVD();
+		} catch (DALException e) {
+			e.printStackTrace();
+			throw new BLLException(e.getMessage());
+		}
+		return listeEnchere;
+	}
 
 }
