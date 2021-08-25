@@ -6,12 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/sinscrire.css" />
 </head>
 <body>
 
 <h1>Mon profil</h1>
-
+<div>
 	<c:if test="${!empty erreurPseudo}"> <!-- si une erreur d'identifiant ou de mot de passe est detecter on affiche le message personalisee pour ce cas -->
 		<span> ${erreurPseudo}</span>
 	</c:if> <br /><br />
@@ -64,6 +64,6 @@
 	<form method="get" action="${pageContext.request.contextPath }/accueil">
 		<button type="submit">Annuler</button>
 	</form>
-
+</div>
 </body>
 </html>
