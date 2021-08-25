@@ -13,10 +13,10 @@ public class UtilisateurManager {
 		this.utilisateursDAO = DAOFactory.getUtilisateursDAO();
 	}
 
-	public void deleteUtilisateur(String pseudo) throws BLLException {
+	public void deleteUtilisateur(int no_utilisateur) throws BLLException {
 	
 		try {
-			this.utilisateursDAO.deleteUtilisateur(pseudo);
+			this.utilisateursDAO.deleteUtilisateur(no_utilisateur);
 		} catch (DALException e) {
 			e.printStackTrace();
 			throw new BLLException(e.getMessage());
@@ -65,6 +65,20 @@ public class UtilisateurManager {
 			e.printStackTrace();
 			throw new BLLException(e.getMessage());
 		}
+	}
+
+	public Utilisateur selectUtilisateurUpdt(String pseudo, String email, String motDePasse) throws BLLException {
+		
+		Utilisateur result = null;
+		try {
+			result = this.utilisateursDAO.selectUtilisateurUptd(pseudo, email, motDePasse);
+		} catch (DALException e) {
+			e.printStackTrace();
+			throw new BLLException(e.getMessage());
+			
+		}
+		
+		return result;
 	}
 	
 }
