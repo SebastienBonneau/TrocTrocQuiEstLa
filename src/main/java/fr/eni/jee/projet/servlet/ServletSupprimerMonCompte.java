@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ServletDeconnexion
+ * Servlet implementation class ServletSupprimerMonCompte
  */
-@WebServlet("/ServletDeconnexion")
-public class ServletDeconnexion extends HttpServlet {
+@WebServlet("/ServletSupprimerMonCompte")
+public class ServletSupprimerMonCompte extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletDeconnexion() {
+    public ServletSupprimerMonCompte() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,8 +34,8 @@ public class ServletDeconnexion extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getSession().invalidate();
-        response.sendRedirect(request.getContextPath() + "/accueil");
-    }
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
 
 }

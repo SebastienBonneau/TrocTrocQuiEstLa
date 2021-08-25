@@ -17,6 +17,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	private final String SQL_INSERT_PROFIL = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, "
 			+ "email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) values (?, ?, ?, ?, ?, ?, ?, ?, ?, 100, 0);";
 	private static final String SQL_VERIFICATION_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?;";
+	private static final String SQL_DELETE = "DELETE FROM UTILISATEURS WHERE (pseudo=? OR email=?)";
 	
 	
 	@Override
@@ -95,7 +96,21 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 			throw new DALException("une erreur est survenu sur la BDD. Note Technique : " + e.getMessage());
 			
         }
-    }	
+    }
+	
+	public void deleteUtilisateur (String utilisateur) throws DALException {
+		
+		try (Connection connection = ConnectionProvider.getPoolConnexion()) {
+			
+			PreparedStatement reqDelete = connection.prepareStatement(this.SQL_DELETE);
+			reqDelete.setString(1, utilisateur);
+			reqDelete.setString(2, utilisateur);
+			reqDelete.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new DALException(e.getMessage());
+		}
+	}
 	
 }
 	
