@@ -9,7 +9,6 @@
 </head>
 <body>
 
-
 <form action="${pageContext.request.contextPath}/ServletSupprimerMonCompte" method="post">
 	<input type="submit" value="Confirmation suppression" />
 </form>
@@ -17,7 +16,6 @@
 <form action="${pageContext.request.contextPath}/ServletAccueil" method="post">
 	<input type="submit" value="Annuler" />
 </form>
-
 
 </body>
 </html>
