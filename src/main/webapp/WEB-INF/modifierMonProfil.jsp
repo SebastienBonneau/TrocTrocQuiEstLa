@@ -15,6 +15,7 @@
 	<c:if test="${!empty sessionScope.utilisateur}"> <!-- si on trouve une session on affiche les href des pages disponible comme utilisateur connecter -->
 	
 		<form method="post" action="${pageContext.request.contextPath}/ServletEnregistrerModificationDuProfil">
+				<input type="hidden" id="no_utilisateur" name="no_utilisateur" value="${utilisateur.no_utilisateur}">
 				<label for="pseudo"> Pseudo : </label>
 				<input type="text" name="pseudo" id="pseudo" required="required" value="${utilisateur.pseudo}"/>
 			<br />
@@ -60,7 +61,7 @@
 		</form>
 			<br />
 			<br />
-		<form method="get" action="${pageContext.request.contextPath }/********">
+		<form method="get" action="${pageContext.request.contextPath }/ServletSupprimerMonCompte">
 			<button type="submit">Supprimer</button>
 		</form>
 
