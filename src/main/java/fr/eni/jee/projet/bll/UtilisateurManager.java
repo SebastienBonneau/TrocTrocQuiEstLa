@@ -33,6 +33,7 @@ public class UtilisateurManager {
 			//validation du telephone
 			
 			//validation de la confirmation du mot de passe
+
 			
 			
 			Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, 0, false);
@@ -43,7 +44,7 @@ public class UtilisateurManager {
 		}
 	}
 	
-	
+		
 	
 }
 
