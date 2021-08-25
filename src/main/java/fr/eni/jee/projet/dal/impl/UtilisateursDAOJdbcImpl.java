@@ -16,7 +16,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	private final static String SQL_SELECT_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE (pseudo=? OR email=?) AND mot_de_passe=?;";
 	private final String SQL_INSERT_PROFIL = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, "
 			+ "email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) values (?, ?, ?, ?, ?, ?, ?, ?, ?, 100, 0);";
-	private static final String SQL_DELETE = "DELETE FROM UTILISATEURS WHERE (pseudo=? OR email=?)";
+	private final String SQL_DELETE = "DELETE FROM UTILISATEURS WHERE (pseudo=? OR email=?)";
 	
 	
 	@Override
