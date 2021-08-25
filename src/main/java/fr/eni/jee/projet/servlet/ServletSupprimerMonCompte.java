@@ -61,8 +61,9 @@ public class ServletSupprimerMonCompte extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.getMessage();
 		}
-		}
 		
+		}
+
 		request.getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
 		
 	}
