@@ -7,9 +7,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.jee.projet.bll.BLLException;
 import fr.eni.jee.projet.bll.UtilisateurManager;
+import fr.eni.jee.projet.bo.Utilisateur;
 
 
 /**
@@ -20,6 +22,7 @@ public class ServletSinscrire extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private UtilisateurManager utilisateurManager;
+	private Utilisateur user = null;
 
 	public ServletSinscrire() {
 		super();
@@ -48,7 +51,10 @@ public class ServletSinscrire extends HttpServlet {
 	         
 			// 2 - On appelle la couche BLL avec ces parametres
 			this.utilisateurManager.inscripionUtilsateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
-			 request.getRequestDispatcher("/accueil").forward(request, response); 
+			user = this.utilisateurManager.selectUtilisateurUpdt(pseudo, email, motDePasse);
+			HttpSession session = request.getSession(false);
+			session.setAttribute("utilisateur", user);
+			request.getRequestDispatcher("/accueil").forward(request, response); 
 			}
 			else {
 				throw new BLLException("Erreur de la confirmation du mot de passe ");
