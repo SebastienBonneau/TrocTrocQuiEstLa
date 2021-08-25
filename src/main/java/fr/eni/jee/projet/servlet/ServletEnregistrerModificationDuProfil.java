@@ -1,14 +1,17 @@
 package fr.eni.jee.projet.servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.jee.projet.bll.BLLException;
 import fr.eni.jee.projet.bll.UtilisateurManager;
+import fr.eni.jee.projet.bo.Utilisateur;
 
 /**
  * Servlet implementation class EnregistrerModificationDuProfil
@@ -18,6 +21,7 @@ public class ServletEnregistrerModificationDuProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
 	private UtilisateurManager utilisateurManager;
+	private Utilisateur user = null;
 
 	public ServletEnregistrerModificationDuProfil() {
 		super();
@@ -43,13 +47,22 @@ public class ServletEnregistrerModificationDuProfil extends HttpServlet {
 			String ville= request.getParameter("ville");
 			String motDePasse = request.getParameter("motDePasse");
 			String confirmation = request.getParameter("confirmation");
-			int no_utilisateur = Integer.parseInt(request.getParameter("no_utilisateur"));
+			HttpSession session = request.getSession(false);
+			int no_utilisateur = (Integer) session.getAttribute("idUtilisateur");
 			
 			if (motDePasse.equals(confirmation)) {
 	         
 			// 2 - On appelle la couche BLL avec ces parametres
 			this.utilisateurManager.modifierUtilisateur(no_utilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
-			request.getRequestDispatcher("/WEB-INF/afficherUnProfil.jsp").forward(request, response); 
+			
+			
+			// 2 - On appelle la couche BLL avec ces parametres
+			user = this.utilisateurManager.selectUtilisateurUpdt(pseudo, email, motDePasse);
+			
+			request.getSession();
+			session.setAttribute("utilisateur", user);
+			request.getRequestDispatcher("/accueil").forward(request, response); 
+			
 			}
 			else {
 				throw new BLLException("Erreur de la confirmation du mot de passe ");
