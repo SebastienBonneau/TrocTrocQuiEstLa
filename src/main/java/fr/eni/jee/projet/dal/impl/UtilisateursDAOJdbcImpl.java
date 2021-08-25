@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import fr.eni.jee.projet.bll.BLLException;
 import fr.eni.jee.projet.bo.Utilisateur;
 import fr.eni.jee.projet.dal.ConnectionProvider;
 import fr.eni.jee.projet.dal.DALException;
@@ -17,8 +18,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	private final String SQL_INSERT_PROFIL = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, "
 			+ "email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) values (?, ?, ?, ?, ?, ?, ?, ?, ?, 100, 0);";
 	private final String SQL_DELETE = "DELETE FROM UTILISATEURS WHERE (pseudo=? OR email=?)";
-	
-	
+
 	@Override
 	public Utilisateur selectUtilisateur(String utilisateur, String motDePasse) throws DALException {
 		
@@ -76,7 +76,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	        pSt.setString(7, user.getCode_postal());
 	        pSt.setString(8, user.getVille());
 	        pSt.setString(9, user.getMot_de_passe());
-   
+	        
 	        pSt.executeUpdate();
             ResultSet clesGenerees = pSt.getGeneratedKeys(); // Récupérer les colonnes auto incrémentée
             if (clesGenerees.next()) {
@@ -91,7 +91,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
     		if (e.getMessage().contains("utilisateurs_email_uq")) {
 				throw new DALException("Email déja utilisé ");
 			}
-			
+    
 			throw new DALException("une erreur est survenu sur la BDD. Note Technique : " + e.getMessage());
 			
         }

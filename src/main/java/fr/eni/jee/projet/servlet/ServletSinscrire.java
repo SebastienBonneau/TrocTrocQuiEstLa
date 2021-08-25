@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.jee.projet.bll.BLLException;
 import fr.eni.jee.projet.bll.UtilisateurManager;
+import fr.eni.jee.projet.dal.DALException;
 
 
 /**
@@ -42,12 +43,17 @@ public class ServletSinscrire extends HttpServlet {
 			String codePostal = request.getParameter("codePostal");
 			String ville= request.getParameter("ville");
 			String motDePasse = request.getParameter("motDePasse");
-			String confirmation= request.getParameter("confirmation");
+			String confirmation = request.getParameter("confirmation");
 			
+			if (motDePasse.equals(confirmation)) {
+	         
 			// 2 - On appelle la couche BLL avec ces parametres
 			this.utilisateurManager.inscripionUtilsateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
 			 request.getRequestDispatcher("/accueil").forward(request, response); 
-			
+			}
+			else {
+				throw new BLLException("Erreur de la confirmation du mot de passe ");
+			}
 		} catch (BLLException e) {
 			e.printStackTrace();
 			request.setAttribute("erreurPseudo", e.getMessage()); // message d'erreur en cas d'identifiant ou de mot de passe incorrect
