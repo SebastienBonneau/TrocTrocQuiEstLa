@@ -22,7 +22,7 @@ import fr.eni.jee.projet.dal.DALException;
 public class ArticleDAOJdbcImpl implements ArticlesDAO {
 
 	private final static String SQL_INSERT_ARTICLE = "insert into ARTICLES_VENDUS (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente) "
-													+ "values (?,?,?,?,?,?,'1',?,'CR');";
+													+ "values (?,?,?,?,?,'0','1',?,'CR');";
 	private final static String SQL_SELECT_ALL_ARTICLE = "SELECT * FROM ARTICLES_VENDUS;";
 	private final static String SQL_UPDATE_ETAT_ARTICLE = "update ARTICLES_VENDUS set etat_vente=? where no_article=?;";
 	private final static String SQL_DELETE_ARTICLE = "delete from ARTICLES_VENDUS where no_article=?;";
@@ -45,16 +45,16 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 			Timestamp sqlDate_debut_enchere = Timestamp.valueOf(article.getDate_debut_enchere());
 			Timestamp sqlDate_fin_enchere = Timestamp.valueOf(article.getDate_fin_enchere());
 			
-				pSt.setString(2, article.getNom_article() );
-				pSt.setString(3, article.getDescription() );
-				pSt.setTimestamp(4, sqlDate_debut_enchere );
-				pSt.setTimestamp(5, sqlDate_fin_enchere );
-				pSt.setInt(6, article.getPrix_initial() );
-				pSt.setInt(7, article.getPrix_vente() );
-				pSt.setInt(8, article.getNo_utilisateur() );
-				pSt.setInt(9, article.getNo_categorie() );
-				pSt.setString(10, article.getEtat_vente() );
-				pSt.setString(11, article.getImage());
+				pSt.setString(1, article.getNom_article() );
+				pSt.setString(2, article.getDescription() );
+				pSt.setTimestamp(3, sqlDate_debut_enchere );
+				pSt.setTimestamp(4, sqlDate_fin_enchere );
+				pSt.setInt(5, article.getPrix_initial() );
+				//pSt.setInt(6, article.getPrix_vente() );
+				//pSt.setInt(7, article.getNo_utilisateur() );
+				pSt.setInt(6, article.getNo_categorie() );
+				//pSt.setString(9, article.getEtat_vente() );
+				//pSt.setString(10, article.getImage());
 				
 				pSt.executeUpdate();
 				ResultSet clesGenerees = pSt.getGeneratedKeys(); // Récupérer les colonnes auto incrémentée

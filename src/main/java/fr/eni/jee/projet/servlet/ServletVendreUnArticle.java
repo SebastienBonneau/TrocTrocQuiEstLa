@@ -34,13 +34,12 @@ public class ServletVendreUnArticle extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
-		
-		
 		String nom_article = request.getParameter("nomArticle");
 		String description = request.getParameter("description");
-		LocalDateTime date_debut_enchere = LocalDateTime.parse("date_debut_enchere", formatter);
-		LocalDateTime date_fin_enchere = LocalDateTime.parse("date_fin_enchere", formatter);
+		LocalDateTime date_debut_enchere = LocalDateTime.parse(request.getParameter("date_debut_enchere"));
+		System.out.println("date : " + date_debut_enchere);
+		LocalDateTime date_fin_enchere = LocalDateTime.parse(request.getParameter("date_fin_enchere"));
+		System.out.println("date : " + date_fin_enchere);
 		int prix_initial = Integer.parseInt(request.getParameter("prix_initial"));
 		//Categorie no_categorie = (request.getParameter("categorie"));
 		String image = request.getParameter("image");
@@ -50,7 +49,7 @@ public class ServletVendreUnArticle extends HttpServlet {
 		//String image = request.getParameter("image");
 		
 		try {
-			this.articleManager.ajouterArticle(nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, no_categorie, image);
+			this.articleManager.ajouterArticle(nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, no_categorie);
 		} catch (BLLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
