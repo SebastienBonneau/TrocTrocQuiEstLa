@@ -44,7 +44,16 @@ public class UtilisateurManager {
 		}
 	}
 	
+	public void modifierUtilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse) throws BLLException {
 		
+		try {
+			Utilisateur user = new Utilisateur(no_utilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
+			utilisateursDAO.updateUtilisateur(user);
+		} catch (DALException e) {
+			e.printStackTrace();
+			throw new BLLException(e.getMessage());
+		}
+	}
 	
 }
 

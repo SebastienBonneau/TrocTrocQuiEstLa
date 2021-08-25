@@ -8,5 +8,6 @@ public interface UtilisateursDAO {
 
 	void insertUtilsateur(Utilisateur user)throws DALException;
 	
+	void updateUtilisateur(Utilisateur user)throws DALException;
 	
 }

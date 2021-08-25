@@ -42,16 +42,22 @@ public class ServletEnregistrerModificationDuProfil extends HttpServlet {
 			String codePostal = request.getParameter("codePostal");
 			String ville= request.getParameter("ville");
 			String motDePasse = request.getParameter("motDePasse");
-			String confirmation= request.getParameter("confirmation");
+			String confirmation = request.getParameter("confirmation");
+			int no_utilisateur = Integer.parseInt(request.getParameter("no_utilisateur"));
 			
+			if (motDePasse.equals(confirmation)) {
+	         
 			// 2 - On appelle la couche BLL avec ces parametres
-			this.utilisateurManager.inscripionUtilsateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
-			 request.getRequestDispatcher("/accueil").forward(request, response); 
-			
+			this.utilisateurManager.modifierUtilisateur(no_utilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
+			request.getRequestDispatcher("/WEB-INF/afficherUnProfil.jsp").forward(request, response); 
+			}
+			else {
+				throw new BLLException("Erreur de la confirmation du mot de passe ");
+			}
 		} catch (BLLException e) {
 			e.printStackTrace();
 			request.setAttribute("erreurPseudo", e.getMessage()); // message d'erreur en cas d'identifiant ou de mot de passe incorrect
-			request.getRequestDispatcher("/WEB-INF/Sinscrire.jsp").forward(request, response); // une erreur est survenu
+			request.getRequestDispatcher("/WEB-INF/modifierMonProfil.jsp").forward(request, response); // une erreur est survenu
 		}
 	}
 
