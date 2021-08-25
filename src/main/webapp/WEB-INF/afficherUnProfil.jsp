@@ -29,7 +29,7 @@
 		<button type="submit">Modifier</button>
 	</form>
 	
-	<form method="post" action="${pageContext.request.contextPath}/ServletRetourAccueil">
+	<form method="post" action="${pageContext.request.contextPath}/accueil">
 		<button type="submit">Accueil</button>
 	</form>
 	
