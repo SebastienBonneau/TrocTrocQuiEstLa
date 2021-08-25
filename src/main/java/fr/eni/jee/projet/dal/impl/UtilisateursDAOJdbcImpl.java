@@ -18,7 +18,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	private final String SQL_INSERT_PROFIL = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, "
 			+ "email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) values (?, ?, ?, ?, ?, ?, ?, ?, ?, 100, 0);";
 	private final String SQL_DELETE = "DELETE FROM UTILISATEURS WHERE (pseudo=? OR email=?)";
-	
+
 
 	
 	@Override
@@ -103,7 +103,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 		
 		try (Connection connection = ConnectionProvider.getPoolConnexion()) {
 			
-			PreparedStatement reqDelete = connection.prepareStatement(this.SQL_DELETE);
+			PreparedStatement reqDelete = connection.prepareStatement(SQL_DELETE);
 			reqDelete.setString(1, utilisateur);
 			reqDelete.setString(2, utilisateur);
 			reqDelete.executeUpdate();
