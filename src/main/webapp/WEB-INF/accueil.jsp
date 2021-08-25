@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	<h1>ENI-Encheres</h1>
+	<h1>TrocTroc Qui est la ?</h1>
 	
 	<!-- 
 	
@@ -36,6 +36,8 @@
 			<br />
 			<input type="search" name="article" id="article"/>
 			<br />
+				<br />
+			<br />	
 			Categorie :&nbsp;
 			<select name="categorie">
 			    <c:forEach items="${listeCategorie}" var="categorie">
