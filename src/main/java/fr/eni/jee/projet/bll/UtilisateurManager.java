@@ -13,6 +13,18 @@ public class UtilisateurManager {
 		this.utilisateursDAO = DAOFactory.getUtilisateursDAO();
 	}
 
+	public void deleteUtilisateur(String pseudo) throws BLLException {
+	
+		try {
+			this.utilisateursDAO.deleteUtilisateur(pseudo);
+		} catch (DALException e) {
+			e.printStackTrace();
+			throw new BLLException(e.getMessage());
+		}
+		
+		
+	}
+	
 	public Utilisateur selectUtilisateur(String identifiant, String motDePasse) throws BLLException {
 		
 		Utilisateur result = null;

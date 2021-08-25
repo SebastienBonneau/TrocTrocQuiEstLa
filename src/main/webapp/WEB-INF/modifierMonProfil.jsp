@@ -59,7 +59,7 @@
 		</form>
 			<br />
 			<br />
-		<form method="get" action="${pageContext.request.contextPath }/********">
+		<form method="get" action="${pageContext.request.contextPath }/ServletSupprimerMonCompte">
 			<button type="submit">Supprimer</button>
 		</form>
 

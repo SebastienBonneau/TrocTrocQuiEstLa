@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.jee.projet.bll.BLLException;
 import fr.eni.jee.projet.bll.UtilisateurManager;
 import fr.eni.jee.projet.bo.Utilisateur;
 
@@ -44,15 +45,30 @@ public class ServletSupprimerMonCompte extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		user = this.utilisateurManager.selectUtilisateur(identifiant, motDePasse);
-		
-		// 3 - On test si un utilisateur est trouve en BDD
 		if(user != null) { // si user est different de null (!=) on fait une nouvelle session avec user
-			HttpSession session = request.getSession(); // nouvelle exemplaire de session
-			session.setAttribute("utilisateur", user); // on valorise l'exemplaire de session avec l'objet user récuperer de la base de donnée après connexion
+		HttpSession session = request.getSession(); // nouvelle exemplaire de session
+		session.setAttribute("utilisateur", user);
+		String pseudo = (String) session.getAttribute("utilisateur");
+		String mail = (String) session.getAttribute("utilisateur");
+		
+		try {
+
+				if (pseudo == null) {
+					this.utilisateurManager.deleteUtilisateur(mail);
+			} else this.utilisateurManager.deleteUtilisateur(pseudo);
+			
+		} catch (BLLException e) {
+			// TODO Auto-generated catch block
+			e.getMessage();
+		}
+		}
+		
+		request.getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
 		
 	}
+}
 
-}
-}
+
+
+
+
