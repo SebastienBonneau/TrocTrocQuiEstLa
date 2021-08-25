@@ -24,7 +24,13 @@
 		</ul>
 	</c:if>
 	
-	<form method="post" action="${pageContext.request.contextPath}/ServletModifierMonProfil"></form>
+	<form method="post" action="${pageContext.request.contextPath}/ServletModifierMonProfil">
+		<button type="submit">Modifier</button>
+	</form>
+	
+	<form method="post" action="${pageContext.request.contextPath}/ServletRetourAccueil">
+		<button type="submit">Accueil</button>
+	</form>
 	
 </body>
 </html>
