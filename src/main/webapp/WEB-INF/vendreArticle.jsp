@@ -25,12 +25,12 @@
 		<textarea name="description" id="description" required="required" rows="4" cols="50"/></textarea>
 	<br />
 	<br />
-		<label for="date_debut"> date de début de l'enchère : </label>
-		<input type="datetime-local" name="date_debut" id="date_debut" required="required" />
+		<label for="date_debut_enchere"> date de début de l'enchère : </label>
+		<input type="datetime-local" name="date_debut_enchere" id="date_debut_enchere" required="required" />
 	<br />
 	<br />
-		<label for="date_fin"> date de fin de l'enchère : </label>
-		<input type="datetime-local" name="date_fin" id="date_fin" required="required" />
+		<label for="date_fin_enchere"> date de fin de l'enchère : </label>
+		<input type="datetime-local" name="date_fin_enchere" id="date_fin_enchere" required="required" />
 	<br />
 	<br />
 		<label for="prix_initial"> Prix de base de l'enchère : </label>

@@ -18,4 +18,8 @@ public class ServletSeDeconnecter extends HttpServlet {
 		
 		request.getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
 	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getSession().invalidate();
+        response.sendRedirect(request.getContextPath() + "/accueil");
+    }
 }

@@ -7,6 +7,7 @@ public class Article {
 	private int  no_article, no_utilisateur, no_categorie, prix_initial, prix_vente;
 	private String nom_article, description, etat_vente, image;
 	private LocalDateTime date_debut_enchere, date_fin_enchere;
+	private Utilisateur user;
 
 	public Article(String nom_article, String description, LocalDateTime date_debut_enchere, LocalDateTime date_fin_enchere, int prix_initial, int prix_vente,
 			int no_utilisateur, int no_categorie, String etat_vente, String image) {
@@ -34,12 +35,12 @@ public class Article {
 	
 
 	public Article(String nom_article, String description, LocalDateTime date_debut_enchere, LocalDateTime date_fin_enchere,
-			 int prix_initial, int no_categorie, String image) {
+			 int prix_initial, int no_categorie) {
 		super();
 		this.prix_initial = prix_initial;
 		this.nom_article = nom_article;
 		this.description = description;
-		this.image = image;
+
 		this.date_debut_enchere = date_debut_enchere;
 		this.date_fin_enchere = date_fin_enchere;
 		this.no_categorie = no_categorie;

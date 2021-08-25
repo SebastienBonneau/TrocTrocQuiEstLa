@@ -19,7 +19,8 @@
 	
 	 -->
 	<c:if test="${!empty sessionScope.utilisateur}"> <!-- si on trouve une session on affiche les href des pages disponible comme utilisateur connecter -->
-		<a href="${pageContext.request.contextPath}/ServeltListeDesEncheres">Encheres</a>  <a href="${pageContext.request.contextPath}/ServletVendreUnArticle">Vendre un article</a>  <a href="${pageContext.request.contextPath}/ServletAfficherUnProfil">Mon profil</a>  <a href="${pageContext.request.contextPath}/ServletSeConnecter">Deconnexion</a><br /><br /> 
+		<a href="${pageContext.request.contextPath}/ServeltListeDesEncheres">Encheres</a>  <a href="${pageContext.request.contextPath}/ServletVendreUnArticle">Vendre un article</a>  <a href="${pageContext.request.contextPath}/ServletAfficherUnProfil">Mon profil</a>  <form action="${pageContext.request.contextPath}/ServletSeDeconnecter" method="post"> <input type="submit" value="Se déconnecter" /></form>
+<br /><br /> 
 		Bonjour : ${utilisateur.nom} ${utilisateur.prenom}
 	</c:if>
 	
