@@ -7,6 +7,7 @@ public class Article {
 	private int  no_article, no_utilisateur, no_categorie, prix_initial, prix_vente;
 	private String nom_article, description, etat_vente, image;
 	private LocalDateTime date_debut_enchere, date_fin_enchere;
+	private Utilisateur user;
 
 	public Article(String nom_article, String description, LocalDateTime date_debut_enchere, LocalDateTime date_fin_enchere, int prix_initial, int prix_vente,
 			int no_utilisateur, int no_categorie, String etat_vente, String image) {
