@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import fr.eni.jee.projet.bll.BLLException;
 import fr.eni.jee.projet.bo.Utilisateur;
 import fr.eni.jee.projet.dal.ConnectionProvider;
 import fr.eni.jee.projet.dal.DALException;
@@ -21,7 +20,6 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	private final String SQL_UPDATE_PROFIL = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, "
 			+ "email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur=?;";
 
-	
 	@Override
 	public Utilisateur selectUtilisateur(String utilisateur, String motDePasse) throws DALException {
 		
