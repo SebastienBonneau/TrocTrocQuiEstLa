@@ -13,6 +13,7 @@ public class UtilisateurManager {
 		this.utilisateursDAO = DAOFactory.getUtilisateursDAO();
 	}
 
+	
 	public void deleteUtilisateur(int no_utilisateur) throws BLLException {
 	
 		try {
@@ -21,9 +22,8 @@ public class UtilisateurManager {
 			e.printStackTrace();
 			throw new BLLException(e.getMessage());
 		}
-		
-		
 	}
+	
 	
 	public Utilisateur selectUtilisateur(String identifiant, String motDePasse) throws BLLException {
 		
@@ -33,18 +33,15 @@ public class UtilisateurManager {
 		} catch (DALException e) {
 			e.printStackTrace();
 			throw new BLLException(e.getMessage());
-			
 		}
-		
 		return result;
 	}
 	
+	
 	public void inscripionUtilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse) throws BLLException {
 		
-		try {
-						
+		try {			
 			//validation de la confirmation du mot de passe
-
 			Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, 0, false);
 			utilisateursDAO.insertUtilsateur(user);
 		} catch (DALException e) {
@@ -52,6 +49,7 @@ public class UtilisateurManager {
 			throw new BLLException(e.getMessage());
 		}
 	}
+	
 	
 	public void modifierUtilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse) throws BLLException {
 		
@@ -64,6 +62,7 @@ public class UtilisateurManager {
 		}
 	}
 
+	
 	public Utilisateur selectUtilisateurUpdt(String pseudo, String email, String motDePasse) throws BLLException {
 		
 		Utilisateur result = null;
@@ -72,9 +71,7 @@ public class UtilisateurManager {
 		} catch (DALException e) {
 			e.printStackTrace();
 			throw new BLLException(e.getMessage());
-			
 		}
-		
 		return result;
 	}
 	

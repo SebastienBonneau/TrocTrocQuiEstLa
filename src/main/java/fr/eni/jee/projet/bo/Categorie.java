@@ -11,6 +11,8 @@ public class Categorie {
 		this.libelle = libelle;
 	}
 
+	
+	// getter et setter 
 	public int getNo_categorie() {
 		return no_categorie;
 	}

@@ -5,6 +5,7 @@ public class Utilisateur {
 	private String pseudo ,nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe ;
 	private int	no_utilisateur, credit ;
 	private boolean administrateur ;
+	
 	// constructeur general, prend en compte toutes les valeurs
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String code_postal, String ville, String mot_de_passe, int credit, boolean administrateur) {
@@ -21,12 +22,16 @@ public class Utilisateur {
 		this.credit = credit;
 		this.administrateur = administrateur;
 	}
+	
+	
 	// constructeur modifie pour notre generated key
 	public Utilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String code_postal, String ville, String mot_de_passe, int credit, boolean administrateur) {
 		this(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur);
 		this.no_utilisateur = no_utilisateur;
 	}
+	
+	
 	// constructeur simplifie pour les tests, avec moins de valeurs a prendre en compte
 	public Utilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String code_postal, String ville, String mot_de_passe) {
@@ -43,6 +48,8 @@ public class Utilisateur {
 		this.mot_de_passe = mot_de_passe;
 	}
 
+	
+	// getter et setter 
 	public String getPseudo() {
 		return pseudo;
 	}

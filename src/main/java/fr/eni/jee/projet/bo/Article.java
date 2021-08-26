@@ -7,7 +7,7 @@ public class Article {
 	private int  no_article, no_utilisateur, no_categorie, prix_initial, prix_vente;
 	private String nom_article, description, etat_vente, image;
 	private LocalDateTime date_debut_enchere, date_fin_enchere;
-	private Utilisateur user;
+	
 	// constructeur general, prend en compte toutes les valeurs
 	public Article(String nom_article, String description, LocalDateTime date_debut_enchere, LocalDateTime date_fin_enchere, int prix_initial, int prix_vente,
 			int no_utilisateur, int no_categorie, String etat_vente, String image) {
@@ -46,8 +46,8 @@ public class Article {
 		this.no_categorie = no_categorie;
 	}
 
+	
 	// getter et setter 
-
 	public int getNo_article() {
 		return no_article;
 	}
