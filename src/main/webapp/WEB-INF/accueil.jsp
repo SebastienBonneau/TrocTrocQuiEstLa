@@ -13,7 +13,7 @@
 	<h1>TrocTroc Qui est la ?</h1>
 
 	<c:if test="${!empty sessionScope.utilisateur}"> <!-- si on trouve une session on affiche les href des pages disponible -->
-		<a href="${pageContext.request.contextPath}/ServeltListeDesEncheres">Encheres</a>  <a href="${pageContext.request.contextPath}/ServletVendreUnArticle">Vendre un article</a>  <a href="${pageContext.request.contextPath}/ServletAfficherUnProfil">Mon profil</a>  <form action="${pageContext.request.contextPath}/ServletSeDeconnecter" method="post"> <input type="submit" value="Se déconnecter" /></form>
+		<a href="${pageContext.request.contextPath}/ServeltListeDesEncheres">Encheres</a>  <a href="${pageContext.request.contextPath}/ServletVendreUnArticle">Vendre un article</a>  <a href="${pageContext.request.contextPath}/ServletAfficherUnProfil">Mon profil</a>  <a href="${pageContext.request.contextPath}/ServletSeDeconnecter">Se Déconnecter</a>
 		<br />
 		<br /> 
 		Bonjour : ${utilisateur.nom} ${utilisateur.prenom}
