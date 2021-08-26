@@ -27,14 +27,14 @@
 	<br />
 	<br />
 	<div class="identifiant">
-		<label for="identifiant"> Identifiant : </label>
-		<input type="text" name="identifiant" id="identifiant" />
+		
+		<input type="text" name="identifiant" placeholder="Pseudo ou Email" id="identifiant" />
 	</div>
 			<br />
 			<br />
+		<input type="password" name="motDePasse" placeholder="Mot de passe" id="motDePasse" />
 			<br />
-		<label for="motDePasse"> Mot de passe : </label>
-		<input type="password" name="motDePasse" id="motDePasse" />
+			<br />
 			<br />
 			<br />
 		<button type="submit" id="connexion" > Connexion </button>
