@@ -11,10 +11,11 @@
 <body>
 
 	<h1>TrocTroc Qui est la ?</h1>
-	
+
 	<c:if test="${!empty sessionScope.utilisateur}"> <!-- si on trouve une session on affiche les href des pages disponible -->
 		<a href="${pageContext.request.contextPath}/ServeltListeDesEncheres">Encheres</a>  <a href="${pageContext.request.contextPath}/ServletVendreUnArticle">Vendre un article</a>  <a href="${pageContext.request.contextPath}/ServletAfficherUnProfil">Mon profil</a>  <form action="${pageContext.request.contextPath}/ServletSeDeconnecter" method="post"> <input type="submit" value="Se déconnecter" /></form>
-<br /><br /> 
+		<br />
+		<br /> 
 		Bonjour : ${utilisateur.nom} ${utilisateur.prenom}
 	</c:if>
 	
@@ -24,7 +25,7 @@
 	
 	<h2>Liste des enchères</h2>
 		
-		<form method="post" action="${pageContext.request.contextPath}/ServletAccueil">
+		<form method="post" action="${pageContext.request.contextPath}/accueil">
 			<label for="Filtre">Filtres : </label>
 			<br />
 			<input type="search" name="article" id="article"/>
@@ -45,7 +46,7 @@
 		</form>
 		
 	<ul>
-	<!--  Je crée un <li> pour chaque élément ${avis} de ma liste ${listeAvis} -->
+	<!--  Je crée un <li> pour chaque élément ${enchere} de ma liste ${listeArticle} -->
 		<c:forEach var="enchere" items="${listeArticle}"> <!-- liste les enchere EC de la BDD avec des information récuperer par une session -->
 			<li>
 				<span>

@@ -27,7 +27,7 @@ public class ServeltListeDesEncheres extends HttpServlet {
     	super();
 		this.articleManager = new ArticleManager();
     }
-	
+	// useless
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		

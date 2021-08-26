@@ -16,7 +16,7 @@ public class ArticleManager {
 	public ArticleManager() {
 		this.articleDAO = DAOFactory.getArticleDAO();
 	}
-
+	// méthode pour check si un article est valable pour être inséré en BDD
 	public void validerArticle (Article a) throws BLLException {
 		if (a.getNom_article() == null) {
 			throw new BLLException("Erreur nï¿½ Article");
@@ -29,6 +29,9 @@ public class ArticleManager {
 		}
 		if (a.getDate_fin_enchere() == null) {
 			throw new BLLException("Erreur date fin enchï¿½re");
+		}
+		if (a.getPrix_initial() < 0) {
+			throw new BLLException("Erreur Prix initial négatif");
 		}
 		if (a.getNo_utilisateur() < 0) {
 			throw new BLLException("Erreur nï¿½ Utilisateur");

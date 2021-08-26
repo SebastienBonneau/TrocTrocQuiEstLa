@@ -35,11 +35,11 @@ public class ServletSupprimerMonCompte extends HttpServlet {
 		
 		HttpSession session = request.getSession(false); // nouvelle exemplaire de session si session == false
 
-		int no_utilisateur = (Integer) session.getAttribute("idUtilisateur");
+		int no_utilisateur = (Integer) session.getAttribute("idUtilisateur"); // on r�cup l'id de l'utilisateur via la session
 		
 		try {
 			
-			this.utilisateurManager.deleteUtilisateur(no_utilisateur); 
+			this.utilisateurManager.deleteUtilisateur(no_utilisateur); // on applique la m�thode delete via l'id de l'utilisateur
 			
 		}catch (BLLException e) {
 			// TODO Auto-generated catch block

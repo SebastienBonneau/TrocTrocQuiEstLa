@@ -16,12 +16,14 @@ public class ServletSeDeconnecter extends HttpServlet {
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
+		// On invalide la session pour la fermer
+		request.getSession().invalidate();
+        response.sendRedirect(request.getContextPath() + "/accueil");
+		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		// On invalide la session pour la fermer
-        request.getSession().invalidate();
-        response.sendRedirect(request.getContextPath() + "/accueil");
+
+        request.getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
+
     }
 }
