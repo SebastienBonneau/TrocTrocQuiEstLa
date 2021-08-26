@@ -52,7 +52,7 @@ public class ServletSinscrire extends HttpServlet {
 			// 2 - On appelle la couche BLL avec ces parametres
 			this.utilisateurManager.inscripionUtilsateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
 			user = this.utilisateurManager.selectUtilisateurUpdt(pseudo, email, motDePasse);
-			HttpSession session = request.getSession(false);
+			HttpSession session = request.getSession(false);// on reset la session pour retourner sur l'accueil avec les données à jour
 			session.setAttribute("utilisateur", user);
 			request.getRequestDispatcher("/accueil").forward(request, response); 
 			}

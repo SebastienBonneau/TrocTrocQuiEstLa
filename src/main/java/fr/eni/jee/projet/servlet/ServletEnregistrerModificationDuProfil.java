@@ -59,7 +59,7 @@ public class ServletEnregistrerModificationDuProfil extends HttpServlet {
 			// 2 - On appelle la couche BLL avec ces parametres
 			user = this.utilisateurManager.selectUtilisateurUpdt(pseudo, email, motDePasse);
 			
-			request.getSession();
+			request.getSession(); // on reset la session pour retourner sur l'accueil avec les données à jour
 			session.setAttribute("utilisateur", user);
 			request.getRequestDispatcher("/accueil").forward(request, response); 
 			

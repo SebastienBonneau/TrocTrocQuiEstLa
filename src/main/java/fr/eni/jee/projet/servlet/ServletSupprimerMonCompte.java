@@ -33,13 +33,13 @@ public class ServletSupprimerMonCompte extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession(false); // on appelle la session pour en récupérer des infos
 
-		int no_utilisateur = (Integer) session.getAttribute("idUtilisateur");
+		int no_utilisateur = (Integer) session.getAttribute("idUtilisateur"); // on récup l'id de l'utilisateur via la session
 		
 		try {
 			
-			this.utilisateurManager.deleteUtilisateur(no_utilisateur); 
+			this.utilisateurManager.deleteUtilisateur(no_utilisateur); // on applique la méthode delete via l'id de l'utilisateur
 			
 		}catch (BLLException e) {
 			// TODO Auto-generated catch block
