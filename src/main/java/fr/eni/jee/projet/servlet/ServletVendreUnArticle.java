@@ -37,16 +37,10 @@ public class ServletVendreUnArticle extends HttpServlet {
 		String nom_article = request.getParameter("nomArticle");
 		String description = request.getParameter("description");
 		LocalDateTime date_debut_enchere = LocalDateTime.parse(request.getParameter("date_debut_enchere"));
-		System.out.println("date : " + date_debut_enchere);
 		LocalDateTime date_fin_enchere = LocalDateTime.parse(request.getParameter("date_fin_enchere"));
-		System.out.println("date : " + date_fin_enchere);
 		int prix_initial = Integer.parseInt(request.getParameter("prix_initial"));
-		//Categorie no_categorie = (request.getParameter("categorie"));
-		String image = request.getParameter("image");
 		int no_categorie = Integer.parseInt(request.getParameter("categorie"));
-		
-		
-		//String image = request.getParameter("image");
+
 		
 		try {
 			this.articleManager.ajouterArticle(nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, no_categorie);

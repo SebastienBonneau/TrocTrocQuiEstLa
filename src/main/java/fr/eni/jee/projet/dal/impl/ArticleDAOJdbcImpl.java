@@ -57,14 +57,14 @@ public class ArticleDAOJdbcImpl implements ArticlesDAO {
 				//pSt.setString(10, article.getImage());
 				
 				pSt.executeUpdate();
-				ResultSet clesGenerees = pSt.getGeneratedKeys(); // Récupérer les colonnes auto incrémentée
-	            if (clesGenerees.next()) {
-	                int idGenere = clesGenerees.getInt(1);
-	                article.setNo_article(idGenere);
-	            }
+//				ResultSet clesGenerees = pSt.getGeneratedKeys(); // Récupérer les colonnes auto incrémentée
+//	            if (clesGenerees.next()) {
+//	                int idGenere = clesGenerees.getInt(1);
+//	                article.setNo_article(idGenere);
+//	            }
 		} catch (SQLException e) {
 			e.getMessage();
-			throw new DALException("errreur SQL_INSERT_ARTICLE");
+			throw new DALException("errreur SQL_INSERT_ARTICLE pas de categorie trouvé");
 		}
 		
 	}
