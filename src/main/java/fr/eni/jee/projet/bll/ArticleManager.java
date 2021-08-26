@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import fr.eni.jee.projet.bo.Article;
-import fr.eni.jee.projet.bo.Categorie;
 import fr.eni.jee.projet.dal.ArticlesDAO;
 import fr.eni.jee.projet.dal.DALException;
 import fr.eni.jee.projet.dal.DAOFactory;
@@ -16,7 +15,9 @@ public class ArticleManager {
 	public ArticleManager() {
 		this.articleDAO = DAOFactory.getArticleDAO();
 	}
-	// méthode pour check si un article est valable pour être inséré en BDD
+	
+	
+	// methode pour check si un article est valable pour etre insere en BDD
 	public void validerArticle (Article a) throws BLLException {
 		if (a.getNom_article() == null) {
 			throw new BLLException("Erreur nï¿½ Article");
@@ -31,7 +32,7 @@ public class ArticleManager {
 			throw new BLLException("Erreur date fin enchï¿½re");
 		}
 		if (a.getPrix_initial() < 0) {
-			throw new BLLException("Erreur Prix initial négatif");
+			throw new BLLException("Erreur Prix initial nï¿½gatif");
 		}
 		if (a.getNo_utilisateur() < 0) {
 			throw new BLLException("Erreur nï¿½ Utilisateur");
@@ -68,6 +69,7 @@ public class ArticleManager {
 		}
 	}
 	
+	
 	public void enchereAnnule (int i) throws BLLException {
 		
 		try {
@@ -87,6 +89,7 @@ public class ArticleManager {
 		}
 	}
 	
+	
 	public List<Article> listeEnchereEC() throws BLLException {
 		
 		List<Article> listeEnchere = null;
@@ -99,6 +102,7 @@ public class ArticleManager {
 		return listeEnchere;
 	}
 
+	
 	public List<Article> listeEnchereCR() throws BLLException {
 		
 		List<Article> listeEnchere = null;
@@ -111,6 +115,7 @@ public class ArticleManager {
 		return listeEnchere;
 	}
 
+	
 	public List<Article> listeEnchereVD() throws BLLException {
 		
 		List<Article> listeEnchere = null;
@@ -123,17 +128,18 @@ public class ArticleManager {
 		return listeEnchere;
 	}
 
+	
 	public void ajouterArticle(String nom_article, String description, LocalDateTime date_debut_enchere, LocalDateTime date_fin_enchere, 
 			int prix_initial, int no_categorie) throws BLLException {
-			Article article = new Article(nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, no_categorie);
-			try {
-				articleDAO.ajouterArticle(article);
-			} catch (DALException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				throw new BLLException(e.getMessage());
-			}
+		
+		Article article = new Article(nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, no_categorie);
+		try {
+			articleDAO.ajouterArticle(article);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new BLLException(e.getMessage());
+		}
 	}
-
 
 }

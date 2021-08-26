@@ -7,8 +7,8 @@ public class Article {
 	private int  no_article, no_utilisateur, no_categorie, prix_initial, prix_vente;
 	private String nom_article, description, etat_vente, image;
 	private LocalDateTime date_debut_enchere, date_fin_enchere;
-	private Utilisateur user;
-	// constructeur général, prend en compte toutes les valeurs
+	
+	// constructeur general, prend en compte toutes les valeurs
 	public Article(String nom_article, String description, LocalDateTime date_debut_enchere, LocalDateTime date_fin_enchere, int prix_initial, int prix_vente,
 			int no_utilisateur, int no_categorie, String etat_vente, String image) {
 		super();
@@ -25,7 +25,7 @@ public class Article {
 	}
 
 	
-	// constructeur modifié pour notre generated key
+	// constructeur modifie pour notre generated key
 	public Article(int no_article, String nom_article, String description, LocalDateTime date_debut_enchere, LocalDateTime date_fin_enchere, int prix_initial, int prix_vente,
 			int no_utilisateur, int no_categorie, String etat_vente, String image) {
 		this(nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente, image);
@@ -33,7 +33,7 @@ public class Article {
 	}
 
 	
-	// constructeur simplifié pour les tests, avec moins de valeurs à prendre en compte
+	// constructeur simplifie pour les tests, avec moins de valeurs a  prendre en compte
 	public Article(String nom_article, String description, LocalDateTime date_debut_enchere, LocalDateTime date_fin_enchere,
 			 int prix_initial, int no_categorie) {
 		super();
@@ -46,8 +46,8 @@ public class Article {
 		this.no_categorie = no_categorie;
 	}
 
+	
 	// getter et setter 
-
 	public int getNo_article() {
 		return no_article;
 	}

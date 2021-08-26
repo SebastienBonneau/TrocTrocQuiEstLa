@@ -5,7 +5,7 @@ import java.util.List;
 
 public class BLLException extends Exception {
 	
-	// essai de listing des différentes erreurs de l'utilisateur
+	// essai de listing des differentes erreurs de l'utilisateur
 	private List<String> messages = new ArrayList<>();
 	   public BLLException(String message) {
 	        super(message);

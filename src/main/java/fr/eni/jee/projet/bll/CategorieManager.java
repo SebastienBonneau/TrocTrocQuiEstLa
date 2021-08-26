@@ -15,6 +15,7 @@ public class CategorieManager {
 		this.categorieDAO = DAOFactory.getCategorieDAO();
 	}
 
+	
 	public List<Categorie> selectCategorie() throws BLLException {
 		
 		List<Categorie> listeCategorie = null;
