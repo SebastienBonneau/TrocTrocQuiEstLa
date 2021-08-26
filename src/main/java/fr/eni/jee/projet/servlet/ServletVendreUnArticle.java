@@ -34,21 +34,32 @@ public class ServletVendreUnArticle extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String nom_article = request.getParameter("nomArticle");
-		String description = request.getParameter("description");
-		LocalDateTime date_debut_enchere = LocalDateTime.parse(request.getParameter("date_debut_enchere"));
-		LocalDateTime date_fin_enchere = LocalDateTime.parse(request.getParameter("date_fin_enchere"));
-		int prix_initial = Integer.parseInt(request.getParameter("prix_initial"));
-		int no_categorie = Integer.parseInt(request.getParameter("categorie"));
-
-		
 		try {
+			
+			// 1 - On recupere les informations envoyees par le formulaire
+			String nom_article = request.getParameter("nomArticle");
+			String description = request.getParameter("description");
+			LocalDateTime date_debut_enchere = LocalDateTime.parse(request.getParameter("date_debut_enchere"));
+			LocalDateTime date_fin_enchere = LocalDateTime.parse(request.getParameter("date_fin_enchere"));
+			int prix_initial = Integer.parseInt(request.getParameter("prix_initial"));
+			int no_categorie = Integer.parseInt(request.getParameter("categorie"));
+			
+			// 2 - On appelle la couche BLL avec ces parametres
 			this.articleManager.ajouterArticle(nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, no_categorie);
+			
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// Si jamais on a une exception personalisee on ajoute un attribut "erreur" pour que la JSP puisse l'afficher
+			// on fait ca parce que l'on veut uniquement afficher nos erreurs "metier"
+			request.setAttribute("erreur", e.getMessage());
+			e.printStackTrace(); // je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
 		}
-	
+		// ce catch est effectue si jamais l'exception levee n'est pas de type BLLException
+		catch( Exception e) {
+			// Si jamais on a une exception d'un autre type, on precise dans notre attribut un message generique d'erreur
+			request.setAttribute("erreur", "une erreur est survenu"); // une erreur est survenu
+			e.printStackTrace(); // je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
+		}
+		
 		request.getRequestDispatcher("/accueil").forward(request,response);
 	}
 	

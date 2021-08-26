@@ -29,8 +29,6 @@ public class ServletSinscrire extends HttpServlet {
 		this.utilisateurManager = new UtilisateurManager();
 	}
 
-
-
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -47,13 +45,14 @@ public class ServletSinscrire extends HttpServlet {
 			String motDePasse = request.getParameter("motDePasse");
 			String confirmation = request.getParameter("confirmation");
 			
+			// 2 - On test si un motDePasse est identique a la confirmation
 			if (motDePasse.equals(confirmation)) {
 	         
-			// 2 - On appelle la couche BLL avec ces parametres
-			this.utilisateurManager.inscripionUtilsateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
+			// 3 - On appelle la couche BLL avec ces parametres
+			this.utilisateurManager.inscripionUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
 			user = this.utilisateurManager.selectUtilisateurUpdt(pseudo, email, motDePasse);
-			HttpSession session = request.getSession(false);
-			session.setAttribute("utilisateur", user);
+			HttpSession session = request.getSession(false); // nouvelle exemplaire de session
+			session.setAttribute("utilisateur", user); // on valorise l'exemplaire de session avec l'objet user récuperer de la base de donnée après connexion
 			request.getRequestDispatcher("/accueil").forward(request, response); 
 			}
 			else {
@@ -62,11 +61,10 @@ public class ServletSinscrire extends HttpServlet {
 		} catch (BLLException e) {
 			e.printStackTrace();
 			request.setAttribute("erreurPseudo", e.getMessage()); // message d'erreur en cas d'identifiant ou de mot de passe incorrect
-			request.getRequestDispatcher("/WEB-INF/Sinscrire.jsp").forward(request, response); // une erreur est survenu
+			request.getRequestDispatcher("/WEB-INF/Sinscrire.jsp").forward(request, response);
 		}
 			
 	}
-	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

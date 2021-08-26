@@ -39,15 +39,13 @@ public class UtilisateurManager {
 		return result;
 	}
 	
-	public void inscripionUtilsateur(String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse) throws BLLException {
+	public void inscripionUtilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse) throws BLLException {
 		
 		try {
 			//validation du telephone
 			
 			//validation de la confirmation du mot de passe
 
-			
-			
 			Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, 0, false);
 			utilisateursDAO.insertUtilsateur(user);
 		} catch (DALException e) {

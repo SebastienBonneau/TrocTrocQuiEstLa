@@ -22,6 +22,7 @@ import fr.eni.jee.projet.bo.Categorie;
 public class ServletAccueil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	
 	private CategorieManager categorieManager;
 	private ArticleManager articleManager;
 
@@ -40,14 +41,14 @@ public class ServletAccueil extends HttpServlet {
 	private void listeDeCategorie(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 		
 		try {
-			
+			// 1 - On appelle la couche BLL pour recupere les informations er les ajouter a une liste de categorie
 			List<Categorie> listeCategorie = this.categorieManager.selectCategorie();
 			request.setAttribute("listeCategorie", listeCategorie);
-			
+			// 2 - On appelle la couche BLL pour recupere les informations er les ajouter a une liste d'article
 			List<Article> listeArticle = this.articleManager.listeEnchereEC();
 			request.setAttribute("listeArticle", listeArticle);
 			
-	        request.getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response); // une erreur est survenu
+	        request.getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
 			
 		}
 		catch( BLLException e) {
@@ -55,7 +56,7 @@ public class ServletAccueil extends HttpServlet {
 			// on fait ca parce que l'on veut uniquement afficher nos erreurs "metier"
 			request.setAttribute("erreur", e.getMessage());
 			request.getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
-			e.printStackTrace(); //je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
+			e.printStackTrace(); // je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
 		}
 		
 	}
@@ -64,6 +65,7 @@ public class ServletAccueil extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// 1 - On recupere les informations envoyees par le formulaire
 		int categorieId = 0;
 		if( request.getParameter("categorie") != null) {
 			categorieId = Integer.parseInt(request.getParameter("categorie"));

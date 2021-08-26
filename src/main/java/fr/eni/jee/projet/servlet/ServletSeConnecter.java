@@ -36,14 +36,8 @@ public class ServletSeConnecter extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/seConnecter.jsp").forward(request, response);
 	}
 
-
-
-	/**
-	 * Est appele lorsqu'on valide le formulaire de connexion 
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-
 		try {
 			// 1 - On recupere les informations envoyees par le formulaire
 			String identifiant = request.getParameter("identifiant");
@@ -59,10 +53,10 @@ public class ServletSeConnecter extends HttpServlet {
                 session.setAttribute("idUtilisateur", user.getNo_utilisateur());
                 session.setAttribute("pseudoUtilisateur", user.getPseudo());
                 session.setAttribute("emailUtilisateur", user.getEmail());
-				request.getRequestDispatcher("/accueil").forward(request, response); // une erreur est survenu
+				request.getRequestDispatcher("/accueil").forward(request, response);
 			}else {
 				request.setAttribute("erreur", "Identifiant ou Mot de passe incorrect !"); // message d'erreur en cas d'identifiant ou de mot de passe incorrect
-                request.getRequestDispatcher("/WEB-INF/seConnecter.jsp").forward(request, response); // une erreur est survenu
+                request.getRequestDispatcher("/WEB-INF/seConnecter.jsp").forward(request, response);
 
            }
 			
@@ -71,15 +65,15 @@ public class ServletSeConnecter extends HttpServlet {
 			// Si jamais on a une exception personalisee on ajoute un attribut "erreur" pour que la JSP puisse l'afficher
 			// on fait ca parce que l'on veut uniquement afficher nos erreurs "metier"
 			request.setAttribute("erreur", e.getMessage());
-			request.getRequestDispatcher("/WEB-INF/seConnecter.jsp").forward(request, response); // une erreur est survenu
-			e.printStackTrace(); //je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
+			request.getRequestDispatcher("/WEB-INF/seConnecter.jsp").forward(request, response);
+			e.printStackTrace(); // je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
 		}
-		// ce catch est effectue si jamais l'exception levee n'est pas de type DALException
+		// ce catch est effectue si jamais l'exception levee n'est pas de type BLLException
 		catch( Exception e) {
 			// Si jamais on a une exception d'un autre type, on precise dans notre attribut un message generique d'erreur
-			request.setAttribute("erreur", "une erreur est survenu");
-			request.getRequestDispatcher("/WEB-INF/seConnecter.jsp").forward(request, response); // une erreur est survenu
-			e.printStackTrace(); //je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
+			request.setAttribute("erreur", "une erreur est survenu"); // une erreur est survenu
+			request.getRequestDispatcher("/WEB-INF/seConnecter.jsp").forward(request, response);
+			e.printStackTrace(); // je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
 		}
 	}
 

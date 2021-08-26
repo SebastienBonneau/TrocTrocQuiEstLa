@@ -50,17 +50,18 @@ public class ServletEnregistrerModificationDuProfil extends HttpServlet {
 			HttpSession session = request.getSession(false);
 			int no_utilisateur = (Integer) session.getAttribute("idUtilisateur");
 			
+			// 2 - On test si un motDePasse est identique a la confirmation
 			if (motDePasse.equals(confirmation)) {
 	         
-			// 2 - On appelle la couche BLL avec ces parametres
+			// 3 - On appelle la couche BLL avec ces parametres
 			this.utilisateurManager.modifierUtilisateur(no_utilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
 			
 			
-			// 2 - On appelle la couche BLL avec ces parametres
+			// 3 - On appelle la couche BLL avec ces parametres user
 			user = this.utilisateurManager.selectUtilisateurUpdt(pseudo, email, motDePasse);
 			
 			request.getSession();
-			session.setAttribute("utilisateur", user);
+			session.setAttribute("utilisateur", user); // on valorise l'exemplaire de session avec l'objet user récuperer de la base de donnée après connexion
 			request.getRequestDispatcher("/accueil").forward(request, response); 
 			
 			}

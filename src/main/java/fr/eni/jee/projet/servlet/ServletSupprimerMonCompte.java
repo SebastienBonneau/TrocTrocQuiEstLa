@@ -33,7 +33,7 @@ public class ServletSupprimerMonCompte extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession(false); // nouvelle exemplaire de session si session == false
 
 		int no_utilisateur = (Integer) session.getAttribute("idUtilisateur");
 		

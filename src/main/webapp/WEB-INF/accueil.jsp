@@ -12,14 +12,7 @@
 
 	<h1>TrocTroc Qui est la ?</h1>
 	
-	<!-- 
-	
-	
-	CHANGE LE LIEN DECONNEXION
-	
-	
-	 -->
-	<c:if test="${!empty sessionScope.utilisateur}"> <!-- si on trouve une session on affiche les href des pages disponible comme utilisateur connecter -->
+	<c:if test="${!empty sessionScope.utilisateur}"> <!-- si on trouve une session on affiche les href des pages disponible -->
 		<a href="${pageContext.request.contextPath}/ServeltListeDesEncheres">Encheres</a>  <a href="${pageContext.request.contextPath}/ServletVendreUnArticle">Vendre un article</a>  <a href="${pageContext.request.contextPath}/ServletAfficherUnProfil">Mon profil</a>  <form action="${pageContext.request.contextPath}/ServletSeDeconnecter" method="post"> <input type="submit" value="Se déconnecter" /></form>
 <br /><br /> 
 		Bonjour : ${utilisateur.nom} ${utilisateur.prenom}
@@ -39,12 +32,12 @@
 				<br />
 			<br />	
 			Categorie :&nbsp;
-			<select name="categorie">
+			<select name="categorie"> <!-- liste deroulante des categorie dynamique via la session (récupere directement les categorie de la BDD) -->
 			    <c:forEach items="${listeCategorie}" var="categorie">
-			        <option value="${categorie.no_categorie}"
+			        <option value="${categorie.no_categorie}" 
 			        	<cif test="${categorie.no_categorie eq selectedCatID}"selected="selected"></cif>
 			        	>
-			        	${categorie.libelle}
+			        	${categorie.libelle} <!-- affiche le libelle des categorie -->
 			        </option>
 			    </c:forEach>
 			</select>
@@ -53,7 +46,7 @@
 		
 	<ul>
 	<!--  Je crée un <li> pour chaque élément ${avis} de ma liste ${listeAvis} -->
-		<c:forEach var="enchere" items="${listeArticle}"> 
+		<c:forEach var="enchere" items="${listeArticle}"> <!-- liste les enchere EC de la BDD avec des information récuperer par une session -->
 			<li>
 				<span>
 				${enchere.nom_article} 
