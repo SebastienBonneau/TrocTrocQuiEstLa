@@ -14,7 +14,9 @@ import fr.eni.jee.projet.dal.UtilisateursDAO;
 public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	
 	private final String SQL_SELECT_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE (pseudo=? OR email=?) AND mot_de_passe=?;";
+							// select classique
 	private final String SQL_SELECT_UTILISATEUR_UPDT = "SELECT * FROM UTILISATEURS WHERE (pseudo=? AND email=? AND mot_de_passe=?);";
+							// select pour les refresh de session
 	private final String SQL_INSERT_PROFIL = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, "
 			+ "email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) values (?, ?, ?, ?, ?, ?, ?, ?, ?, 100, 0);";
 	private final String SQL_DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur=?;";
@@ -60,7 +62,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	}
 	
 	public Utilisateur selectUtilisateurUptd(String pPseudo, String pEmail, String motDePasse) throws DALException {
-		
+	// ce select est l‡ pour rÈcupÈrer les donnÈes de l'utilisateur et les conserver lors d'un reset de session (par exemple aprËs un enregistrement d'un nouveau compte)	
 		Utilisateur user = null;
 		try (Connection connection = ConnectionProvider.getPoolConnexion()) {
 
@@ -171,10 +173,10 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
         }catch (SQLException e) {
             e.printStackTrace(); //je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
     		if (e.getMessage().contains("utilisateurs_pseudo_uq")) {
-				throw new DALException("Pseudo d√©ja utilis√© ");
+				throw new DALException("Pseudo d√©ja utilis√© "); // exception personalisÈ pour le pseudo
 			}
     		if (e.getMessage().contains("utilisateurs_email_uq")) {
-				throw new DALException("Email d√©ja utilis√© ");
+				throw new DALException("Email d√©ja utilis√© "); // exception personalisÈ pour le mail
 			}
     
 			throw new DALException("une erreur est survenu sur la BDD. Note Technique : " + e.getMessage());
