@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 public class ConnectionProvider {
 	
 	
-	// ATtribut de la classe (tatic) qui correspond a notre POOL de connection
+	// Attribut de la classe (static) qui correspond a notre POOL de connection
 		private static DataSource dataSource ; 
 	
 	// INITIALISATION DU DATASOURCE  
@@ -22,8 +22,8 @@ public class ConnectionProvider {
 			try {
 				Context context = new InitialContext();
 			
-	// On utilise pas this.dataSOurce car dataSource ets un attribut fde la classee (static).
-	// ... il faut donc pas utiliser le nom de 
+	// On utilise pas this.dataSOurce car dataSource ets un attribut de la classee (static).
+	// ...  il faut donc utiliser le nom de la classe a la place de this
 			
 				ConnectionProvider.dataSource = (DataSource)context.lookup("java:comp/env/jdbc/pool_cnx");
 			} catch (NamingException e) {

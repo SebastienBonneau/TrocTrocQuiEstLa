@@ -12,14 +12,16 @@ import fr.eni.jee.projet.dal.DALException;
 import fr.eni.jee.projet.dal.UtilisateursDAO;
 
 public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
-	
+		// select classique
 	private final String SQL_SELECT_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE (pseudo=? OR email=?) AND mot_de_passe=?;";
-							// select classique
+		// select pour les refresh de session
 	private final String SQL_SELECT_UTILISATEUR_UPDT = "SELECT * FROM UTILISATEURS WHERE (pseudo=? AND email=? AND mot_de_passe=?);";
-							// select pour les refresh de session
+		//insertion d'un profil
 	private final String SQL_INSERT_PROFIL = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, "
 			+ "email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) values (?, ?, ?, ?, ?, ?, ?, ?, ?, 100, 0);";
+		// suppression d'un utilisateur
 	private final String SQL_DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur=?;";
+	
 	private final String SQL_UPDATE_PROFIL = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, "
 			+ "email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur=?;";
 
@@ -62,7 +64,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	}
 	
 	public Utilisateur selectUtilisateurUptd(String pPseudo, String pEmail, String motDePasse) throws DALException {
-	// ce select est là pour récupérer les données de l'utilisateur et les conserver lors d'un reset de session (par exemple après un enregistrement d'un nouveau compte)	
+	// ce select est lï¿½ pour rï¿½cupï¿½rer les donnï¿½es de l'utilisateur et les conserver lors d'un reset de session (par exemple aprï¿½s un enregistrement d'un nouveau compte)	
 		Utilisateur user = null;
 		try (Connection connection = ConnectionProvider.getPoolConnexion()) {
 
@@ -173,10 +175,10 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
         }catch (SQLException e) {
             e.printStackTrace(); //je fais cela pour afficher dans la console l'erreur malgre le fait que l'erreur est catchee
     		if (e.getMessage().contains("utilisateurs_pseudo_uq")) {
-				throw new DALException("Pseudo dÃ©ja utilisÃ© "); // exception personalisé pour le pseudo
+				throw new DALException("Pseudo dÃ©ja utilisÃ© "); // exception personalisï¿½ pour le pseudo
 			}
     		if (e.getMessage().contains("utilisateurs_email_uq")) {
-				throw new DALException("Email dÃ©ja utilisÃ© "); // exception personalisé pour le mail
+				throw new DALException("Email dÃ©ja utilisÃ© "); // exception personalisï¿½ pour le mail
 			}
     
 			throw new DALException("une erreur est survenu sur la BDD. Note Technique : " + e.getMessage());
