@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.jee.projet.bll.BLLException;
 import fr.eni.jee.projet.bll.UtilisateurManager;
+import fr.eni.jee.projet.bo.BOException;
 
 /**
  * Servlet implementation class ServletSupprimerMonCompte
@@ -40,13 +41,15 @@ public class ServletSupprimerMonCompte extends HttpServlet {
 		try {
 			
 			this.utilisateurManager.deleteUtilisateur(no_utilisateur); // on applique la m�thode delete via l'id de l'utilisateur
+			request.getSession().invalidate();
+			response.sendRedirect(request.getContextPath() + "/accueil");
 			
 		}catch (BLLException e) {
-			// TODO Auto-generated catch block
 			e.getMessage();
+			request.setAttribute("erreur", "Identifiant ou Mot de passe incorrect !");
+			response.sendRedirect(request.getContextPath() + "/accueil");
 		}
-		request.getSession().invalidate();
-        response.sendRedirect(request.getContextPath() + "/accueil");
+		
 	}
 }
 
